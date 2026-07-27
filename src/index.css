@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg-darker: #0B1220;
+  --color-brand-bg: #0F172A;
+  --color-brand-card: #1E293B;
+  --color-brand-green-dark: #16A34A;
+  --color-brand-green: #22C55E;
+  --color-brand-lime: #84CC16;
+  --color-brand-glass: rgba(15, 23, 42, 0.55);
+  --color-brand-glass-border: rgba(255, 255, 255, 0.06);
+}
+
+/* Global resets and typography */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0B1220;
+  color: #f1f5f9;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Styles */
+.bg-glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.border-glass {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom glow animations for predictive AI models */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.15), 0 0 20px rgba(132, 204, 22, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.45), 0 0 45px rgba(132, 204, 22, 0.25);
+  }
+}
+
+.ai-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+/* Floating animation for UI elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scrollbar styles for the dashboard panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22C55E;
+}
+
+/* Additional gradient helper utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #22C55E 0%, #84CC16 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

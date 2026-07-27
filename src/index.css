@@ -7,7 +7,7 @@
   --color-brand-green-dark: #16A34A;
   --color-brand-green: #22C55E;
   --color-brand-lime: #84CC16;
-  --color-brand-glass: rgba(15, 23, 42, 0.55);
+  --color-brand-glass: rgba(10, 23, 42, 0.55);
   --color-brand-glass-border: rgba(255, 255, 255, 0.06);
   --color-neon-cyan: #06b6d4;
   --color-neon-blue: #00f0ff;
@@ -48,9 +48,12 @@ body {
 
 /* Custom glow animations for predictive AI models */
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 12px rgba(6, 182, 212, 0.2), 0 0 25px rgba(16, 185, 129, 0.1);
   }
+
   50% {
     box-shadow: 0 0 28px rgba(6, 182, 212, 0.5), 0 0 48px rgba(16, 185, 129, 0.3);
   }
@@ -62,15 +65,20 @@ body {
 
 /* Hologram flicker and scanlines */
 @keyframes hologram-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.85;
     filter: brightness(1) contrast(1);
   }
+
   50% {
     opacity: 0.98;
     filter: brightness(1.2) contrast(1.1);
   }
-  15%, 85% {
+
+  15%,
+  85% {
     filter: hue-rotate(5deg);
   }
 }
@@ -82,7 +90,7 @@ body {
 /* Tech Grids */
 .bg-tech-grid {
   background-size: 60px 60px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
 }
@@ -94,27 +102,36 @@ body {
 
 /* Floating animations with different scales */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-10px) rotate(0.5deg);
   }
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-6px) rotate(-0.5deg);
   }
 }
 
 @keyframes float-reversed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(8px);
   }
@@ -137,6 +154,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -171,13 +189,16 @@ body {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0B1220;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1E293B;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #06b6d4;
 }
@@ -196,4 +217,3 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-

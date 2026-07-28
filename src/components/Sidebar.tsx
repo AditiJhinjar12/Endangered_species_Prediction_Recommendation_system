@@ -37,7 +37,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {isOpenMobile && (
         <div
           onClick={() => setIsOpenMobile(false)}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs md:hidden"
         />
       )}
 
@@ -45,8 +45,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <motion.aside
         animate={isCollapsed ? 'collapsed' : 'expanded'}
         variants={sidebarVariants}
-        transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-        className={`fixed md:sticky top-20 bottom-0 left-0 z-40 h-[calc(100vh-80px)] bg-brand-card/90 border-r border-emerald-950/40 text-gray-300 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 ${
+        transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+        className={`fixed md:sticky top-20 bottom-0 left-0 z-40 h-[calc(100vh-80px)] bg-white border-r border-gray-200 text-gray-700 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 ${
           isOpenMobile ? 'translate-x-0 w-[260px]' : '-translate-x-full md:block'
         }`}
       >
@@ -54,13 +54,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Collapse Button (Desktop only) */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden md:flex items-center justify-center self-end w-8 h-8 rounded-lg bg-emerald-950/30 hover:bg-emerald-900/40 text-emerald-400 border border-emerald-800/30 transition-colors"
+            className="hidden md:flex items-center justify-center self-end w-8 h-8 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-500 border border-gray-200 transition-colors cursor-pointer"
           >
-            {isCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
+            {isCollapsed ? <FaChevronRight className="h-3 w-3" /> : <FaChevronLeft className="h-3 w-3" />}
           </button>
 
           {/* Navigation Tabs */}
-          <nav className="flex flex-col space-y-2">
+          <nav className="flex flex-col space-y-1.5">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -72,20 +72,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     setActiveTab(tab.id);
                     setIsOpenMobile(false);
                   }}
-                  className={`relative flex items-center w-full p-3.5 rounded-xl font-semibold transition-all duration-300 text-left group ${
+                  className={`relative flex items-center w-full p-3 rounded-xl font-medium transition-all duration-200 text-left group cursor-pointer ${
                     isActive
-                      ? 'text-white bg-emerald-950/40 border border-emerald-500/20'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+                      ? 'text-brand-green bg-green-50/70 border border-green-100'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 border border-transparent'
                   }`}
                 >
-                  <Icon className={`h-5 w-5 min-w-[20px] transition-colors ${isActive ? 'text-emerald-400' : 'text-gray-400 group-hover:text-emerald-500'}`} />
+                  <Icon className={`h-5 w-5 min-w-[20px] transition-colors ${isActive ? 'text-brand-green' : 'text-gray-400 group-hover:text-brand-green'}`} />
                   
                   {!isCollapsed && (
                     <span className="ml-4 text-sm truncate">{tab.name}</span>
                   )}
                   
                   {isCollapsed && (
-                    <div className="absolute left-16 scale-0 bg-emerald-950 text-emerald-400 text-xs px-2.5 py-1.5 rounded-md border border-emerald-800/30 shadow-lg pointer-events-none group-hover:scale-100 transition-all duration-200 whitespace-nowrap z-50">
+                    <div className="absolute left-16 scale-0 bg-gray-900 text-white text-xs px-2.5 py-1.5 rounded-md shadow-md pointer-events-none group-hover:scale-100 transition-all duration-200 whitespace-nowrap z-50">
                       {tab.name}
                     </div>
                   )}
@@ -95,14 +95,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </nav>
         </div>
 
-        {/* Footer Metrics (Academic/Version) inside Sidebar */}
-        <div className="p-4 border-t border-emerald-950/40 bg-brand-bg/20">
+        {/* Footer Metrics inside Sidebar */}
+        <div className="p-4 border-t border-gray-100 bg-gray-50/50">
           <div className="flex items-center space-x-3">
-            <FaDatabase className="text-emerald-500/60 h-5 w-5 min-w-[20px]" />
+            <FaDatabase className="text-brand-green/60 h-5 w-5 min-w-[20px]" />
             {!isCollapsed && (
-              <div className="truncate">
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Active Database</p>
-                <p className="text-xs text-gray-300 truncate">Redlist Species v26.1</p>
+              <div className="truncate text-left">
+                <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Active Database</p>
+                <p className="text-xs text-gray-700 font-medium truncate">Redlist Species v26.1</p>
               </div>
             )}
           </div>

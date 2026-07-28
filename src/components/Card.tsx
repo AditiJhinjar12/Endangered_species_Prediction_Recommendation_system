@@ -5,7 +5,6 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   hoverable?: boolean;
-  glow?: boolean;
   onClick?: () => void;
 }
 
@@ -13,33 +12,25 @@ export const Card: React.FC<CardProps> = ({
   children,
   className = '',
   hoverable = true,
-  glow = false,
   onClick,
 }) => {
-  // Premium glassmorphism base styles
-  const baseStyles = `bg-glass border-glass rounded-2xl p-6 transition-all duration-500 relative overflow-hidden ${
+  // Simple, clean white card styling with 12px (rounded-xl) corners and soft shadow
+  const baseStyles = `bg-white border border-gray-100 rounded-xl p-6 transition-all duration-300 relative overflow-hidden ${
     onClick ? 'cursor-pointer' : ''
-  } ${
-    glow 
-      ? 'shadow-[0_0_25px_rgba(34,197,94,0.12)] border-brand-green/30' 
-      : 'shadow-[0_8px_32px_rgba(0,0,0,0.37)]'
-  }`;
+  } shadow-sm`;
 
   if (hoverable) {
     return (
       <motion.div
         onClick={onClick}
         whileHover={{ 
-          y: -8, 
-          scale: 1.01,
-          borderColor: 'rgba(34, 197, 94, 0.3)',
-          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.08)'
+          y: -4, 
+          boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
+          borderColor: 'rgba(46, 125, 50, 0.25)' // Soft brand green border on hover
         }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+        transition={{ duration: 0.2 }}
         className={`${baseStyles} ${className}`}
       >
-        {/* Abstract subtle glowing aura background for hovered cards */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-brand-green/5 blur-3xl pointer-events-none transition-opacity group-hover:opacity-100" />
         {children}
       </motion.div>
     );

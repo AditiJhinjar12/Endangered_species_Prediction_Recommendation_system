@@ -29,9 +29,7 @@ import {
   Legend,
   BarChart,
   Bar,
-  Cell,
-  PieChart,
-  Pie
+  Cell
 } from 'recharts';
 
 // Mock species telemetry data
@@ -153,12 +151,12 @@ export const Dashboard: React.FC = () => {
 
   const weather = weatherData[weatherSanctuary];
 
-  // Pie chart distribution data
-  const pieData = [
-    { name: 'Mammals', value: 45, color: '#10b981' },
-    { name: 'Birds', value: 25, color: '#34d399' },
-    { name: 'Reptiles', value: 15, color: '#047857' },
-    { name: 'Amphibians', value: 15, color: '#059669' }
+  // Bar chart species class distribution data
+  const barData = [
+    { name: 'Mammals', value: 45, fill: '#2E7D32' },
+    { name: 'Birds', value: 25, fill: '#388E3C' },
+    { name: 'Reptiles', value: 15, fill: '#4CAF50' },
+    { name: 'Amphibians', value: 15, fill: '#81C784' }
   ];
 
   // Calculate dynamic intervention score based on toggles
@@ -210,121 +208,191 @@ export const Dashboard: React.FC = () => {
     switch (activeTab) {
       case 'overview':
         return (
-          <div className="space-y-8 animate-fade-in text-left">
+          <div className="space-y-8 text-left">
             
-            {/* Welcome Banner */}
-            <Card hoverable={false} className="border-emerald-500/20 bg-gradient-to-r from-brand-card/90 via-emerald-950/20 to-brand-card/90 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+            {/* Top Welcome Section */}
+            <div className="bg-white border border-gray-150 rounded-xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm">
               <div>
-                <h2 className="text-xl md:text-2xl font-extrabold text-white tracking-wide">Welcome Back, Lead Conservator</h2>
-                <p className="text-gray-400 text-xs md:text-sm mt-1">AI modeling environment synchronized. Species telemetry indices are operational.</p>
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900">Welcome back!</h2>
+                <p className="text-gray-500 text-xs md:text-sm mt-1">EcoPredictAI telemetry network is operational and monitoring protected regions.</p>
               </div>
-              <div className="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl">
+              <div className="flex items-center space-x-2 text-xs font-semibold text-brand-green bg-green-50 border border-green-150 px-3 py-1.5 rounded-xl">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
                 </span>
                 <span>Active Model Node: Bengal-V4</span>
               </div>
-            </Card>
+            </div>
 
-            {/* Quick Metrics Grid */}
+            {/* Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60">
+              <Card hoverable={false} className="border-gray-150 bg-white">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Endangered Species</p>
-                    <h3 className="text-3xl font-extrabold text-white mt-1">1,482</h3>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Total Species</p>
+                    <h3 className="text-3xl font-bold text-gray-900 mt-1">520</h3>
                   </div>
-                  <div className="p-2.5 bg-red-950/40 border border-red-500/20 text-red-400 rounded-lg">
-                    <FaSkullCrossbones />
-                  </div>
-                </div>
-                <div className="text-xs text-gray-500 mt-4">Red List updates in progress</div>
-              </Card>
-
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Sanctuary Corridors</p>
-                    <h3 className="text-3xl font-extrabold text-emerald-400 mt-1">154</h3>
-                  </div>
-                  <div className="p-2.5 bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 rounded-lg">
+                  <div className="p-2.5 bg-green-50 border border-green-100 text-brand-green rounded-lg">
                     <FaTree />
                   </div>
                 </div>
-                <div className="text-xs text-emerald-500/80 mt-4">+12 new corridors pending</div>
+                <div className="text-xs text-gray-400 mt-4">Red List catalog operational</div>
               </Card>
 
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60">
+              <Card hoverable={false} className="border-gray-150 bg-white">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Average Climate Stress</p>
-                    <h3 className="text-3xl font-extrabold text-amber-500 mt-1">Medium</h3>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Endangered Species</p>
+                    <h3 className="text-3xl font-bold text-red-600 mt-1">1,482</h3>
                   </div>
-                  <div className="p-2.5 bg-amber-950/40 border border-amber-500/20 text-amber-400 rounded-lg">
-                    <FaCloudSun />
+                  <div className="p-2.5 bg-red-50 border border-red-100 text-red-600 rounded-lg">
+                    <FaSkullCrossbones />
                   </div>
                 </div>
-                <div className="text-xs text-gray-500 mt-4">Canopy temperature anomalies</div>
+                <div className="text-xs text-gray-400 mt-4">Requiring urgent interventions</div>
               </Card>
 
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60">
+              <Card hoverable={false} className="border-gray-150 bg-white">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">AI Mitigation Rate</p>
-                    <h3 className="text-3xl font-extrabold text-teal-400 mt-1">+14.6%</h3>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Prediction Accuracy</p>
+                    <h3 className="text-3xl font-bold text-brand-green mt-1">95%</h3>
                   </div>
-                  <div className="p-2.5 bg-teal-950/40 border border-teal-500/20 text-teal-400 rounded-lg">
+                  <div className="p-2.5 bg-green-50 border border-green-100 text-brand-green rounded-lg">
                     <FaShieldAlt />
                   </div>
                 </div>
-                <div className="text-xs text-teal-500/80 mt-4">Based on applied interventions</div>
+                <div className="text-xs text-gray-400 mt-4">Based on backtesting validation</div>
+              </Card>
+
+              <Card hoverable={false} className="border-gray-150 bg-white">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Active Alerts</p>
+                    <h3 className="text-3xl font-bold text-amber-600 mt-1">14</h3>
+                  </div>
+                  <div className="p-2.5 bg-amber-50 border border-amber-100 text-amber-600 rounded-lg">
+                    <FaBell />
+                  </div>
+                </div>
+                <div className="text-xs text-gray-400 mt-4">Sanctuary anomalies detected</div>
               </Card>
             </div>
 
-            {/* Interactive Map & Weather Widget */}
+            {/* Charts Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              
+              {/* Line Chart: Population Trend */}
+              <Card hoverable={false} className="border-gray-150 bg-white flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                    <h3 className="font-bold text-gray-900">Population Trend Projections</h3>
+                    <span className="text-[10px] font-mono text-gray-400">10-year forecasts</span>
+                  </div>
+                  <div className="h-64 w-full text-xs">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={projectionData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                        <XAxis dataKey="year" stroke="#9ca3af" />
+                        <YAxis stroke="#9ca3af" />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: '#ffffff',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: '8px',
+                            color: '#1f2937'
+                          }}
+                        />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="Baseline"
+                          stroke="#DC2626"
+                          strokeWidth={2}
+                          strokeDasharray="5 5"
+                          name="Baseline Decline"
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="Predicted"
+                          stroke="#2E7D32"
+                          strokeWidth={3}
+                          activeDot={{ r: 8 }}
+                          name="Predicted Trend"
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Bar Chart: Species Distribution */}
+              <Card hoverable={false} className="border-gray-150 bg-white flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                    <h3 className="font-bold text-gray-900">Species Distribution</h3>
+                    <span className="text-[10px] font-mono text-gray-400">monitored categories %</span>
+                  </div>
+                  <div className="h-64 w-full text-xs">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={barData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                        <XAxis dataKey="name" stroke="#9ca3af" />
+                        <YAxis stroke="#9ca3af" />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: '#ffffff',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: '8px',
+                            color: '#1f2937'
+                          }}
+                        />
+                        <Bar dataKey="value" fill="#2E7D32" radius={[6, 6, 0, 0]}>
+                          {barData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.fill} />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </Card>
+
+            </div>
+
+            {/* Interactive Vector Hotspots & Weather Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* SVG Map Panel */}
-              <Card hoverable={false} className="lg:col-span-2 border-emerald-950/60 bg-brand-card/95 flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-4">
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
                     <div className="flex items-center space-x-2">
-                      <FaMapMarkerAlt className="text-emerald-500" />
-                      <h3 className="font-bold text-white">Ecological Sanctuary Hotspots</h3>
+                      <FaMapMarkerAlt className="text-brand-green" />
+                      <h3 className="font-bold text-gray-900">Sanctuary Hotspot Telemetry</h3>
                     </div>
-                    <span className="text-[10px] font-mono text-gray-500">interactive vector mapping</span>
+                    <span className="text-[10px] font-mono text-gray-400">interactive grids</span>
                   </div>
 
-                  {/* Stylized vector map */}
                   <div className="relative">
-                    <svg className="w-full h-64 bg-[#0a1210] rounded-xl border border-emerald-950/40 overflow-hidden" viewBox="0 0 500 280">
-                      {/* Topographical grid lines */}
-                      <path d="M -20 120 Q 150 90 280 190 T 520 170" fill="none" stroke="rgba(16, 185, 129, 0.15)" strokeWidth="6" />
-                      <path d="M 120 -25 Q 190 130 290 190" fill="none" stroke="rgba(16, 185, 129, 0.1)" strokeWidth="3" />
+                    <svg className="w-full h-64 bg-gray-50 rounded-xl border border-gray-150 overflow-hidden" viewBox="0 0 500 280">
+                      {/* Grid lines */}
+                      <path d="M -20 120 Q 150 90 280 190 T 520 170" fill="none" stroke="rgba(46, 125, 50, 0.08)" strokeWidth="6" />
                       
-                      <line x1="100" y1="0" x2="100" y2="280" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
-                      <line x1="200" y1="0" x2="200" y2="280" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
-                      <line x1="300" y1="0" x2="300" y2="280" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
-                      <line x1="400" y1="0" x2="400" y2="280" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
-                      <line x1="0" y1="100" x2="500" y2="100" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
-                      <line x1="0" y1="200" x2="500" y2="200" stroke="rgba(255, 255, 255, 0.02)" strokeWidth="1" />
+                      <line x1="100" y1="0" x2="100" y2="280" stroke="rgba(0,0,0,0.02)" />
+                      <line x1="200" y1="0" x2="200" y2="280" stroke="rgba(0,0,0,0.02)" />
+                      <line x1="300" y1="0" x2="300" y2="280" stroke="rgba(0,0,0,0.02)" />
+                      <line x1="400" y1="0" x2="400" y2="280" stroke="rgba(0,0,0,0.02)" />
+                      <line x1="0" y1="100" x2="500" y2="100" stroke="rgba(0,0,0,0.02)" />
+                      <line x1="0" y1="200" x2="500" y2="200" stroke="rgba(0,0,0,0.02)" />
 
-                      {/* Forests representations */}
-                      <rect x="40" y="30" width="80" height="70" rx="12" fill="rgba(16, 185, 129, 0.04)" />
-                      <rect x="360" y="40" width="90" height="60" rx="12" fill="rgba(16, 185, 129, 0.04)" />
-                      <rect x="230" y="190" width="130" height="70" rx="12" fill="rgba(16, 185, 129, 0.04)" />
+                      <rect x="40" y="30" width="80" height="70" rx="12" fill="rgba(46, 125, 50, 0.03)" />
+                      <rect x="360" y="40" width="90" height="60" rx="12" fill="rgba(46, 125, 50, 0.03)" />
+                      <rect x="230" y="190" width="130" height="70" rx="12" fill="rgba(46, 125, 50, 0.03)" />
 
-                      {/* Hotspots */}
                       {hotspots.map((spot) => {
                         const isActive = activeHotspotId === spot.id;
-                        const statusColors = {
-                          Critical: 'stroke-red-500 fill-red-500',
-                          Alert: 'stroke-amber-500 fill-amber-500',
-                          Stable: 'stroke-emerald-500 fill-emerald-500'
-                        };
-                        const colorClass = statusColors[spot.status];
+                        const colorClass = spot.status === 'Critical' ? 'fill-red-600' : spot.status === 'Alert' ? 'fill-amber-500' : 'fill-brand-green';
 
                         return (
                           <g
@@ -332,31 +400,27 @@ export const Dashboard: React.FC = () => {
                             onClick={() => setActiveHotspotId(spot.id)}
                             className="cursor-pointer group"
                           >
-                            {/* Outer pulsing ping */}
                             <circle
                               cx={spot.coords.x}
                               cy={spot.coords.y}
                               r={isActive ? 12 : 8}
                               fill="none"
-                              className="animate-ping origin-center"
-                              stroke={spot.status === 'Critical' ? '#ef4444' : spot.status === 'Alert' ? '#f59e0b' : '#10b981'}
-                              strokeWidth="2"
-                              style={{ transformOrigin: `${spot.coords.x}px ${spot.coords.y}px` }}
+                              stroke={spot.status === 'Critical' ? '#dc2626' : spot.status === 'Alert' ? '#f59e0b' : '#2e7d32'}
+                              strokeWidth="1.5"
+                              className={isActive ? "animate-pulse" : ""}
                             />
-                            {/* Center dot */}
                             <circle
                               cx={spot.coords.x}
                               cy={spot.coords.y}
                               r={isActive ? 6 : 4.5}
-                              className={`transition-all duration-300 ${colorClass.split(' ')[1]}`}
+                              className={colorClass}
                             />
-                            {/* Label */}
                             <text
                               x={spot.coords.x + 10}
                               y={spot.coords.y + 4}
-                              fill={isActive ? '#10b981' : '#9ca3af'}
+                              fill={isActive ? '#2e7d32' : '#6b7280'}
                               fontSize="9"
-                              className="font-mono font-bold transition-colors select-none opacity-60 group-hover:opacity-100"
+                              className="font-mono font-bold"
                             >
                               {spot.id}
                             </text>
@@ -367,18 +431,17 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Hotspot details output */}
-                <div className="mt-4 p-3.5 bg-brand-bg/50 border border-emerald-950/50 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div className="mt-4 p-3.5 bg-gray-50 border border-gray-100 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                   <div className="text-xs space-y-1">
-                    <p className="text-gray-400 font-semibold uppercase tracking-wider">Active Hotspot: <span className="text-white">{activeHotspot.name} ({activeHotspot.id})</span></p>
-                    <p className="text-gray-500">Telemetry Target: <span className="text-emerald-400">{activeHotspot.species}</span> | Primary Danger: <span className="text-red-400">{activeHotspot.threat}</span></p>
+                    <p className="text-gray-500 font-semibold uppercase tracking-wider">Active Hotspot: <span className="text-gray-900">{activeHotspot.name}</span></p>
+                    <p className="text-gray-400">Target Species: <span className="text-brand-green">{activeHotspot.species}</span> | Primary Danger: <span className="text-red-600">{activeHotspot.threat}</span></p>
                   </div>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
                     activeHotspot.status === 'Critical' 
-                      ? 'bg-red-950/40 text-red-400 border-red-500/20' 
+                      ? 'bg-red-50 text-red-600 border-red-100' 
                       : activeHotspot.status === 'Alert' 
-                      ? 'bg-amber-950/40 text-amber-400 border-amber-500/20' 
-                      : 'bg-emerald-950/40 text-emerald-400 border-emerald-500/20'
+                      ? 'bg-amber-50 text-amber-600 border-amber-100' 
+                      : 'bg-green-50 text-brand-green border-green-100'
                   }`}>
                     {activeHotspot.status} Status
                   </span>
@@ -386,16 +449,15 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Weather & Climate Widget */}
-              <Card hoverable={false} className="lg:col-span-1 border-emerald-950/60 bg-brand-card/95 flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3">
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                     <div className="flex items-center space-x-2">
-                      <FaCloudSun className="text-emerald-500" />
-                      <h3 className="font-bold text-white">Habitat Climate Grid</h3>
+                      <FaCloudSun className="text-brand-green" />
+                      <h3 className="font-bold text-gray-900">Habitat Climate</h3>
                     </div>
                   </div>
 
-                  {/* Sanctuary selectors */}
                   <div className="grid grid-cols-2 gap-2 text-center text-xs">
                     {[
                       { id: 'sundarbans', label: 'Sundarbans' },
@@ -408,8 +470,8 @@ export const Dashboard: React.FC = () => {
                         onClick={() => setWeatherSanctuary(btn.id)}
                         className={`p-2 rounded-lg font-semibold transition-colors border ${
                           weatherSanctuary === btn.id
-                            ? 'bg-emerald-950/50 text-emerald-400 border-emerald-500/20'
-                            : 'bg-brand-bg/50 text-gray-400 border-transparent hover:bg-white/5 hover:text-white'
+                            ? 'bg-green-50 text-brand-green border-green-100'
+                            : 'bg-gray-50 text-gray-500 border-transparent hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
                         }`}
                       >
                         {btn.label}
@@ -417,281 +479,237 @@ export const Dashboard: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Weather Indicators */}
                   <div className="space-y-4 pt-2">
-                    <div className="text-center p-4 bg-brand-bg/30 border border-emerald-950/40 rounded-xl relative overflow-hidden">
-                      <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">{weather.name}</p>
-                      <h4 className="text-4xl font-extrabold text-white mt-2">{weather.temp}</h4>
-                      <p className="text-xs text-emerald-400 mt-1 font-medium">{weather.cond}</p>
+                    <div className="text-center p-4 bg-gray-50 border border-gray-100 rounded-xl">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">{weather.name}</p>
+                      <h4 className="text-3xl font-bold text-gray-900 mt-2">{weather.temp}</h4>
+                      <p className="text-xs text-brand-green mt-1 font-medium">{weather.cond}</p>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                      <div className="p-2.5 bg-brand-bg/40 border border-emerald-950/30 rounded-xl">
-                        <FaTint className="text-blue-400 mx-auto mb-1.5" />
-                        <span className="block text-[10px] text-gray-500 font-semibold">Humidity</span>
-                        <span className="block font-bold text-white mt-0.5">{weather.humidity}</span>
+                    <div className="grid grid-cols-3 gap-2 text-center text-[10px] sm:text-xs">
+                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                        <FaTint className="text-brand-blue mx-auto mb-1" />
+                        <span className="block text-[9px] text-gray-400 font-semibold">Humidity</span>
+                        <span className="block font-bold text-gray-700 mt-0.5">{weather.humidity}</span>
                       </div>
-                      <div className="p-2.5 bg-brand-bg/40 border border-emerald-950/30 rounded-xl">
-                        <FaTree className="text-emerald-500 mx-auto mb-1.5" />
-                        <span className="block text-[10px] text-gray-500 font-semibold">Canopy Cover</span>
-                        <span className="block font-bold text-white mt-0.5">{weather.canopy}</span>
+                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                        <FaTree className="text-brand-green mx-auto mb-1" />
+                        <span className="block text-[9px] text-gray-400 font-semibold">Canopy</span>
+                        <span className="block font-bold text-gray-700 mt-0.5">{weather.canopy}</span>
                       </div>
-                      <div className="p-2.5 bg-brand-bg/40 border border-emerald-950/30 rounded-xl">
-                        <FaWind className="text-teal-400 mx-auto mb-1.5" />
-                        <span className="block text-[10px] text-gray-500 font-semibold">Wind</span>
-                        <span className="block font-bold text-white mt-0.5">{weather.wind}</span>
+                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                        <FaWind className="text-teal-600 mx-auto mb-1" />
+                        <span className="block text-[9px] text-gray-400 font-semibold">Wind</span>
+                        <span className="block font-bold text-gray-700 mt-0.5">{weather.wind}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="text-[10px] text-gray-500 leading-relaxed text-left border-t border-emerald-950/40 pt-4 mt-6">
+                <div className="text-[10px] text-gray-400 leading-relaxed text-left border-t border-gray-100 pt-4 mt-6">
                   * Meteorological feeds sync directly with climate sensors hourly.
                 </div>
               </Card>
 
             </div>
 
-            {/* Species Distribution & Recent Predictions Table */}
+            {/* Recent Predictions Table */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* Predictions Table */}
-              <Card hoverable={false} className="lg:col-span-2 border-emerald-950/60 bg-brand-card/95 overflow-hidden">
-                <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-6">
-                  <h3 className="font-bold text-white">Recent ML Population Forecast runs</h3>
-                  <span className="text-[10px] font-mono text-gray-500">logger output</span>
+              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white overflow-hidden">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
+                  <h3 className="font-bold text-gray-900">Recent Predictions Table</h3>
+                  <span className="text-[10px] font-mono text-gray-400">ML Forecast outputs</span>
                 </div>
 
                 <div className="overflow-x-auto w-full">
                   <table className="w-full text-left border-collapse text-xs">
                     <thead>
-                      <tr className="border-b border-emerald-950/60 text-gray-400 uppercase tracking-wider font-semibold">
-                        <th className="pb-3 pr-2">Target Species</th>
-                        <th className="pb-3 px-2">Model Type</th>
-                        <th className="pb-3 px-2 text-center">Confidence</th>
-                        <th className="pb-3 px-2 text-center">Horizon</th>
-                        <th className="pb-3 pl-2 text-right">Status</th>
+                      <tr className="border-b border-gray-200 text-gray-500 uppercase tracking-wider font-semibold">
+                        <th className="pb-3 pr-2">Species</th>
+                        <th className="pb-3 px-2 text-center">Current Population</th>
+                        <th className="pb-3 px-2 text-center">Predicted Population</th>
+                        <th className="pb-3 pl-2 text-right">Risk Level</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-emerald-950/35">
-                      <tr className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 pr-2 font-bold text-white">Bengal Tiger</td>
-                        <td className="py-3.5 px-2 text-gray-300 font-mono">RandomForestRegressor</td>
-                        <td className="py-3.5 px-2 text-center text-emerald-400 font-semibold">96.4%</td>
-                        <td className="py-3.5 px-2 text-center text-gray-400">10 Years</td>
-                        <td className="py-3.5 pl-2 text-right"><span className="bg-emerald-950/40 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Completed</span></td>
+                    <tbody className="divide-y divide-gray-100">
+                      <tr className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Bengal Tiger</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">3,890</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">4,450 (10-yr)</td>
+                        <td className="py-3.5 pl-2 text-right"><span className="bg-red-50 text-red-600 border border-red-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Endangered</span></td>
                       </tr>
-                      <tr className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 pr-2 font-bold text-white">Snow Leopard</td>
-                        <td className="py-3.5 px-2 text-gray-300 font-mono">LSTMNeuralNetwork</td>
-                        <td className="py-3.5 px-2 text-center text-emerald-400 font-semibold">94.8%</td>
-                        <td className="py-3.5 px-2 text-center text-gray-400">10 Years</td>
-                        <td className="py-3.5 pl-2 text-right"><span className="bg-red-950/40 text-red-400 border border-red-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Alert (Decline)</span></td>
+                      <tr className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Snow Leopard</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">4,500</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">3,200 (10-yr)</td>
+                        <td className="py-3.5 pl-2 text-right"><span className="bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Vulnerable</span></td>
                       </tr>
-                      <tr className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 pr-2 font-bold text-white">Asian Elephant</td>
-                        <td className="py-3.5 px-2 text-gray-300 font-mono">ProphetTimeSeries</td>
-                        <td className="py-3.5 px-2 text-center text-emerald-400 font-semibold">91.2%</td>
-                        <td className="py-3.5 px-2 text-center text-gray-400">10 Years</td>
-                        <td className="py-3.5 pl-2 text-right"><span className="bg-emerald-950/40 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Completed</span></td>
+                      <tr className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Asian Elephant</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">48,400</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">42,000 (10-yr)</td>
+                        <td className="py-3.5 pl-2 text-right"><span className="bg-red-50 text-red-600 border border-red-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Endangered</span></td>
                       </tr>
-                      <tr className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 pr-2 font-bold text-white">One-Horned Rhino</td>
-                        <td className="py-3.5 px-2 text-gray-300 font-mono">RidgeRegression</td>
-                        <td className="py-3.5 px-2 text-center text-amber-400 font-semibold">89.5%</td>
-                        <td className="py-3.5 px-2 text-center text-gray-400">10 Years</td>
-                        <td className="py-3.5 pl-2 text-right"><span className="bg-amber-950/40 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded text-[10px] font-semibold">Stable</span></td>
+                      <tr className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-3.5 pr-2 font-semibold text-gray-900">One-Horned Rhino</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">3,580</td>
+                        <td className="py-3.5 px-2 text-center text-gray-600">3,850 (10-yr)</td>
+                        <td className="py-3.5 pl-2 text-right"><span className="bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Vulnerable</span></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </Card>
 
-              {/* Species Distribution Chart */}
-              <Card hoverable={false} className="lg:col-span-1 border-emerald-950/60 bg-brand-card/95 flex flex-col justify-between">
+              {/* Latest Alerts */}
+              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-6">
-                    <h3 className="font-bold text-white">Telemetry Class Ratio</h3>
-                    <span className="text-[10px] font-mono text-gray-500">species distribution</span>
+                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
+                    <div className="flex items-center space-x-2">
+                      <FaRegClock className="text-brand-green" />
+                      <h3 className="font-bold text-gray-900">Latest Alerts</h3>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-center">
-                    <ResponsiveContainer width="100%" height={180}>
-                      <PieChart>
-                        <Pie
-                          data={pieData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={50}
-                          outerRadius={70}
-                          paddingAngle={4}
-                          dataKey="value"
-                        >
-                          {pieData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: '#111a17',
-                            border: '1px solid rgba(16, 185, 129, 0.2)',
-                            borderRadius: '8px',
-                            color: '#fff'
-                          }}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
+                  <div className="space-y-6 relative text-xs pl-4 border-l border-gray-100 ml-2">
+                    <div className="relative">
+                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-green border border-white" />
+                      <p className="text-[10px] text-brand-green font-bold uppercase">10 mins ago</p>
+                      <p className="text-gray-900 font-semibold mt-0.5">Canopy coverage decline</p>
+                      <p className="text-gray-400 text-[10px]">Tiger Sector Alpha logged a 4.2% drop.</p>
+                    </div>
+
+                    <div className="relative">
+                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-green border border-white" />
+                      <p className="text-[10px] text-brand-green font-bold uppercase">1 hr ago</p>
+                      <p className="text-gray-900 font-semibold mt-0.5">Sensor re-established sync</p>
+                      <p className="text-gray-400 text-[10px]">Himalayan Ridge Grid sensor node re-sync.</p>
+                    </div>
+
+                    <div className="relative">
+                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-amber-500 border border-white" />
+                      <p className="text-[10px] text-amber-500 font-bold uppercase">4 hrs ago</p>
+                      <p className="text-gray-900 font-semibold mt-0.5">Poaching threat alert</p>
+                      <p className="text-gray-400 text-[10px]">High poaching index logged at Kaziranga.</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Pie Chart Legend */}
-                <div className="grid grid-cols-2 gap-2 text-left text-xs mt-4 pt-4 border-t border-emerald-950/40 text-gray-400">
-                  {pieData.map((item, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span>{item.name} ({item.value}%)</span>
-                    </div>
-                  ))}
+                <div className="mt-6 border-t border-gray-100 pt-4">
+                  <div className="flex items-center space-x-2 text-[10px] text-brand-green bg-green-50 px-2.5 py-1.5 rounded-lg border border-green-100">
+                    <FaInfoCircle />
+                    <span>Ranger dispatch sync is operational</span>
+                  </div>
                 </div>
               </Card>
 
             </div>
 
-            {/* Recommendations Panel & Activity Timeline */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
-              {/* Recommendation Grid */}
-              <div className="lg:col-span-2 space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-white tracking-wide">Suggested AI Conservation Policies</h3>
-                  <button onClick={() => setActiveTab('recommendations')} className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold">View All Policies →</button>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <Card hoverable className="border-emerald-950/40 bg-brand-card/60 flex flex-col justify-between text-left h-full">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-start">
-                        <span className="bg-red-950/50 border border-red-500/20 text-red-400 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
-                        <span className="text-xs text-gray-500 font-mono">ID: AI-P12</span>
-                      </div>
-                      <h4 className="font-bold text-white text-base">Autonomous Drone Patrolling</h4>
-                      <p className="text-xs text-gray-400 leading-relaxed">
-                        Deploy thermal-equipped AI drone swarms in high poaching regions to alert ranger units of illegal campfires or movement.
-                      </p>
-                    </div>
-                    <div className="border-t border-emerald-950/30 pt-4 mt-6 flex justify-between items-center text-xs">
-                      <span className="text-gray-400">Target: Bengal Tiger</span>
-                      <Button variant="primary" size="sm" onClick={() => {
-                        setSelectedSpeciesId('tiger');
-                        setPatrolsActive(true);
-                        setActiveTab('predictor');
-                      }}>
-                        Simulate
-                      </Button>
-                    </div>
-                  </Card>
-
-                  <Card hoverable className="border-emerald-950/40 bg-brand-card/60 flex flex-col justify-between text-left h-full">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-start">
-                        <span className="bg-amber-950/50 border border-amber-500/20 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
-                        <span className="text-xs text-gray-500 font-mono">ID: AI-P08</span>
-                      </div>
-                      <h4 className="font-bold text-white text-base">Community Eco-Insurance</h4>
-                      <p className="text-xs text-gray-400 leading-relaxed">
-                        Subsidize livestock insurance in high-altitude communities to prevent retaliatory killings of leopards when stock is lost.
-                      </p>
-                    </div>
-                    <div className="border-t border-emerald-950/30 pt-4 mt-6 flex justify-between items-center text-xs">
-                      <span className="text-gray-400">Target: Snow Leopard</span>
-                      <Button variant="primary" size="sm" onClick={() => {
-                        setSelectedSpeciesId('leopard');
-                        setFundingSlider(85);
-                        setActiveTab('predictor');
-                      }}>
-                        Simulate
-                      </Button>
-                    </div>
-                  </Card>
-                </div>
+            {/* Recent Recommendations */}
+            <div className="space-y-6">
+              <div className="flex justify-between items-center text-left">
+                <h3 className="text-lg font-bold text-gray-900">Recent Recommendations</h3>
+                <button onClick={() => setActiveTab('recommendations')} className="text-xs text-brand-blue hover:underline font-semibold cursor-pointer">View All Policies →</button>
               </div>
 
-              {/* Activity Timeline Widget */}
-              <Card hoverable={false} className="lg:col-span-1 border-emerald-950/60 bg-brand-card/95 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-6">
-                    <div className="flex items-center space-x-2">
-                      <FaRegClock className="text-emerald-500" />
-                      <h3 className="font-bold text-white">System Activity Logs</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-start">
+                      <span className="bg-red-50 border border-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
+                      <span className="text-xs text-gray-400 font-mono">ID: AI-P12</span>
                     </div>
+                    <h4 className="font-bold text-gray-900 text-base">Autonomous Drone Patrolling</h4>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Deploy thermal-equipped AI drone swarms in high poaching regions to alert ranger units.
+                    </p>
                   </div>
-
-                  {/* Vertical Timeline */}
-                  <div className="space-y-6 relative text-xs pl-4 border-l border-emerald-950/50 ml-2">
-                    <div className="relative">
-                      {/* Circle indicator */}
-                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-brand-card" />
-                      <p className="text-[10px] text-emerald-400/80 font-bold uppercase tracking-wider">10:30 AM</p>
-                      <p className="text-white font-semibold mt-0.5">Deforest variables ingested</p>
-                      <p className="text-gray-500 text-[10px]">Satellite GIS layer scanned Sector Alpha.</p>
-                    </div>
-
-                    <div className="relative">
-                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-brand-card" />
-                      <p className="text-[10px] text-emerald-400/80 font-bold uppercase tracking-wider">09:12 AM</p>
-                      <p className="text-white font-semibold mt-0.5">LSTM Model retrained</p>
-                      <p className="text-gray-500 text-[10px]">retrained model weights for Snow Leopard.</p>
-                    </div>
-
-                    <div className="relative">
-                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-gray-500 border border-brand-card" />
-                      <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Yesterday</p>
-                      <p className="text-gray-300 font-semibold mt-0.5">Threat Warnings Dispatched</p>
-                      <p className="text-gray-500 text-[10px]">Dispatched automatic logs to regional rangers.</p>
-                    </div>
-
-                    <div className="relative">
-                      <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-gray-500 border border-brand-card" />
-                      <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">2 Days Ago</p>
-                      <p className="text-gray-300 font-semibold mt-0.5">Recommendations drafted</p>
-                      <p className="text-gray-500 text-[10px]">Sector 12 mitigation corridor variables saved.</p>
-                    </div>
+                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                    <span className="text-gray-400">Target: Bengal Tiger</span>
+                    <Button variant="outline" size="sm" onClick={() => {
+                      setSelectedSpeciesId('tiger');
+                      setPatrolsActive(true);
+                      setActiveTab('predictor');
+                    }}>
+                      Simulate
+                    </Button>
                   </div>
-                </div>
+                </Card>
 
-                <div className="mt-6 border-t border-emerald-950/40 pt-4">
-                  <div className="flex items-center space-x-2 text-[10px] text-emerald-400/80 bg-emerald-950/20 px-2.5 py-1.5 rounded-lg border border-emerald-500/10">
-                    <FaInfoCircle />
-                    <span>Background workers are active and synced</span>
+                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-start">
+                      <span className="bg-amber-50 border border-amber-100 text-amber-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
+                      <span className="text-xs text-gray-400 font-mono">ID: AI-P08</span>
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-base">Community Eco-Insurance</h4>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Subsidize livestock insurance in high-altitude communities to prevent retaliatory killings.
+                    </p>
                   </div>
-                </div>
-              </Card>
+                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                    <span className="text-gray-400">Target: Snow Leopard</span>
+                    <Button variant="outline" size="sm" onClick={() => {
+                      setSelectedSpeciesId('leopard');
+                      setFundingSlider(85);
+                      setActiveTab('predictor');
+                    }}>
+                      Simulate
+                    </Button>
+                  </div>
+                </Card>
 
+                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-start">
+                      <span className="bg-green-50 border border-green-100 text-brand-green text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Optimal</span>
+                      <span className="text-xs text-gray-400 font-mono">ID: AI-P04</span>
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-base">Agricultural Buffer Zones</h4>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      Plant repellent crops on agricultural borders to prevent elephant crop raids.
+                    </p>
+                  </div>
+                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                    <span className="text-gray-400">Target: Asian Elephant</span>
+                    <Button variant="outline" size="sm" onClick={() => {
+                      setSelectedSpeciesId('elephant');
+                      setCorridorsActive(true);
+                      setActiveTab('predictor');
+                    }}>
+                      Simulate
+                    </Button>
+                  </div>
+                </Card>
+              </div>
             </div>
+
           </div>
         );
 
       case 'predictor':
         return (
-          <div className="space-y-8 animate-fade-in text-left">
+          <div className="space-y-8 text-left">
             {/* Control Board */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* Species Selector and sliders */}
-              <Card hoverable={false} className="lg:col-span-1 border-emerald-950/60 bg-brand-card/95 flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-2 border-b border-emerald-950/40 pb-3">
-                    <FaSlidersH className="text-emerald-500" />
-                    <h3 className="font-bold text-white">Simulation Controls</h3>
+                  <div className="flex items-center space-x-2 border-b border-gray-100 pb-3">
+                    <FaSlidersH className="text-brand-green" />
+                    <h3 className="font-bold text-gray-900">Simulation Controls</h3>
                   </div>
 
                   {/* Species Selector */}
                   <div className="space-y-2">
-                    <label className="text-xs text-gray-400 uppercase font-semibold">Select Target Species</label>
+                    <label className="text-xs text-gray-500 uppercase font-semibold">Select Target Species</label>
                     <select
                       value={selectedSpeciesId}
                       onChange={(e) => setSelectedSpeciesId(e.target.value)}
-                      className="block w-full px-3 py-2.5 bg-brand-bg border border-emerald-950/60 rounded-xl text-sm text-white focus:outline-none"
+                      className="block w-full px-3 py-2.5 bg-white border border-gray-205 rounded-xl text-sm text-gray-700 focus:outline-none"
                     >
                       <option value="tiger">Bengal Tiger (Panthera tigris)</option>
                       <option value="leopard">Snow Leopard (Panthera uncia)</option>
@@ -701,9 +719,9 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Anti-poaching toggle */}
-                  <div className="flex items-center justify-between p-3 bg-brand-bg/50 border border-emerald-950/40 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-xl">
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white">Anti-Poaching Patrols</h4>
+                      <h4 className="text-xs sm:text-sm font-bold text-gray-900">Anti-Poaching Patrols</h4>
                       <p className="text-[10px] text-gray-400 mt-0.5">Increases forest guards by 40%</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -716,14 +734,14 @@ export const Dashboard: React.FC = () => {
                         }}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-green"></div>
                     </label>
                   </div>
 
                   {/* Forest corridors toggle */}
-                  <div className="flex items-center justify-between p-3 bg-brand-bg/50 border border-emerald-950/40 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-xl">
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white">Wildlife Corridors</h4>
+                      <h4 className="text-xs sm:text-sm font-bold text-gray-900">Wildlife Corridors</h4>
                       <p className="text-[10px] text-gray-400 mt-0.5">Connects fragmented habitats</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -736,15 +754,15 @@ export const Dashboard: React.FC = () => {
                         }}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                      <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-green"></div>
                     </label>
                   </div>
 
                   {/* Funding Slider */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-gray-400 uppercase">Conservation Budget Allocation</span>
-                      <span className="text-emerald-400">{fundingSlider}%</span>
+                      <span className="text-gray-500 uppercase">Conservation Budget Allocation</span>
+                      <span className="text-brand-green">{fundingSlider}%</span>
                     </div>
                     <input
                       type="range"
@@ -755,30 +773,30 @@ export const Dashboard: React.FC = () => {
                         setFundingSlider(Number(e.target.value));
                         handleRecalculate();
                       }}
-                      className="w-full h-1 bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                      className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-green"
                     />
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-emerald-950/40">
-                  <div className="p-3.5 bg-emerald-950/20 border border-emerald-500/20 rounded-xl text-center">
-                    <span className="block text-[10px] text-gray-400 uppercase font-semibold">Calculated Protection Score</span>
-                    <span className="block text-2xl font-extrabold text-emerald-400 mt-1">{interventionScore}/100</span>
+                <div className="mt-8 pt-4 border-t border-gray-100">
+                  <div className="p-3.5 bg-green-50 border border-green-100 rounded-xl text-center">
+                    <span className="block text-[10px] text-gray-500 uppercase font-semibold">Calculated Protection Score</span>
+                    <span className="block text-2xl font-extrabold text-brand-green mt-1">{interventionScore}/100</span>
                   </div>
                 </div>
               </Card>
 
               {/* Projections graph */}
-              <Card hoverable={false} className="lg:col-span-2 border-emerald-950/60 bg-brand-card/95 flex flex-col">
-                <div className="flex justify-between items-center border-b border-emerald-950/40 pb-3 mb-6">
+              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white flex flex-col">
+                <div className="flex justify-between items-center border-b border-gray-100 pb-3 mb-6">
                   <div>
-                    <h3 className="font-bold text-white">{selectedSpecies.name} Projections</h3>
-                    <p className="text-xs text-gray-500 italic mt-0.5">{selectedSpecies.scientificName}</p>
+                    <h3 className="font-bold text-gray-900">{selectedSpecies.name} Projections</h3>
+                    <p className="text-xs text-gray-400 italic mt-0.5">{selectedSpecies.scientificName}</p>
                   </div>
                   <div className={`px-2.5 py-1 rounded-md text-xs font-semibold border ${
                     selectedSpecies.riskStatus === 'Critical' 
-                      ? 'bg-red-950/45 text-red-400 border-red-500/30' 
-                      : 'bg-amber-950/45 text-amber-400 border-amber-500/30'
+                      ? 'bg-red-50 text-red-600 border-red-100' 
+                      : 'bg-amber-50 text-amber-600 border-amber-100'
                   }`}>
                     {selectedSpecies.riskStatus}
                   </div>
@@ -792,22 +810,22 @@ export const Dashboard: React.FC = () => {
                   <div className="flex-1 min-h-[300px] w-full text-xs">
                     <ResponsiveContainer width="100%" height={320}>
                       <LineChart data={projectionData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(16, 185, 129, 0.05)" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                         <XAxis dataKey="year" stroke="#9ca3af" />
                         <YAxis stroke="#9ca3af" />
                         <Tooltip
                           contentStyle={{
-                            backgroundColor: '#111a17',
-                            border: '1px solid rgba(16, 185, 129, 0.2)',
+                            backgroundColor: '#ffffff',
+                            border: '1px solid #e5e7eb',
                             borderRadius: '8px',
-                            color: '#fff'
+                            color: '#1f2937'
                           }}
                         />
-                        <Legend wrapperStyle={{ color: '#9ca3af', paddingTop: 10 }} />
+                        <Legend />
                         <Line
                           type="monotone"
                           dataKey="Baseline"
-                          stroke="#ef4444"
+                          stroke="#DC2626"
                           strokeWidth={2}
                           strokeDasharray="5 5"
                           name="Historical Baseline (Decline)"
@@ -815,7 +833,7 @@ export const Dashboard: React.FC = () => {
                         <Line
                           type="monotone"
                           dataKey="Predicted"
-                          stroke="#10b981"
+                          stroke="#2E7D32"
                           strokeWidth={3}
                           activeDot={{ r: 8 }}
                           name="AI Predicted (With Interventions)"
@@ -832,29 +850,29 @@ export const Dashboard: React.FC = () => {
 
       case 'recommendations':
         return (
-          <div className="space-y-8 animate-fade-in text-left">
+          <div className="space-y-8 text-left">
             <div className="max-w-3xl space-y-2">
-              <h2 className="text-2xl font-bold text-white">AI Policy & Intervention Recommendations</h2>
-              <p className="text-sm text-gray-400">
+              <h2 className="text-2xl font-bold text-gray-900">AI Policy & Intervention Recommendations</h2>
+              <p className="text-sm text-gray-500">
                 EcoPredictAI has cross-referenced telemetry alerts with local variables to formulate these recommendations.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60 flex flex-col justify-between h-full">
+              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <span className="bg-red-950/50 border border-red-500/20 text-red-400 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
-                    <span className="text-xs text-gray-500 font-mono">ID: AI-P12</span>
+                    <span className="bg-red-50 border border-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
+                    <span className="text-xs text-gray-400 font-mono">ID: AI-P12</span>
                   </div>
-                  <h4 className="font-bold text-white text-base">Autonomous Drone Patrolling</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">
+                  <h4 className="font-bold text-gray-900 text-base">Autonomous Drone Patrolling</h4>
+                  <p className="text-xs text-gray-500 leading-relaxed">
                     Deploy thermal-equipped AI drone swarms in high poaching regions to alert ranger units of illegal campfires or movement.
                   </p>
                 </div>
-                <div className="border-t border-emerald-950/30 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Bengal Tiger</span>
-                  <Button variant="primary" size="sm" onClick={() => {
+                  <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('tiger');
                     setPatrolsActive(true);
                     setActiveTab('predictor');
@@ -864,20 +882,20 @@ export const Dashboard: React.FC = () => {
                 </div>
               </Card>
 
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60 flex flex-col justify-between h-full">
+              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <span className="bg-amber-950/50 border border-amber-500/20 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
-                    <span className="text-xs text-gray-500 font-mono">ID: AI-P08</span>
+                    <span className="bg-amber-50 border border-amber-100 text-amber-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
+                    <span className="text-xs text-gray-400 font-mono">ID: AI-P08</span>
                   </div>
-                  <h4 className="font-bold text-white text-base">Community Eco-Insurance</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">
+                  <h4 className="font-bold text-gray-900 text-base">Community Eco-Insurance</h4>
+                  <p className="text-xs text-gray-500 leading-relaxed">
                     Subsidize livestock insurance in high-altitude communities to prevent retaliatory killings of leopards when stock is lost.
                   </p>
                 </div>
-                <div className="border-t border-emerald-950/30 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Snow Leopard</span>
-                  <Button variant="primary" size="sm" onClick={() => {
+                  <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('leopard');
                     setFundingSlider(85);
                     setActiveTab('predictor');
@@ -887,20 +905,20 @@ export const Dashboard: React.FC = () => {
                 </div>
               </Card>
 
-              <Card hoverable className="border-emerald-950/40 bg-brand-card/60 flex flex-col justify-between h-full">
+              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <span className="bg-emerald-950/50 border border-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Optimal</span>
-                    <span className="text-xs text-gray-500 font-mono">ID: AI-P04</span>
+                    <span className="bg-green-50 border border-green-100 text-brand-green text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Optimal</span>
+                    <span className="text-xs text-gray-400 font-mono">ID: AI-P04</span>
                   </div>
-                  <h4 className="font-bold text-white text-base">Agricultural Buffer Zones</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">
+                  <h4 className="font-bold text-gray-900 text-base">Agricultural Buffer Zones</h4>
+                  <p className="text-xs text-gray-500 leading-relaxed">
                     Plant repellent crop barriers (like chili or citrus) on agricultural borders to prevent elephant crop raids and conflicts.
                   </p>
                 </div>
-                <div className="border-t border-emerald-950/30 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Asian Elephant</span>
-                  <Button variant="primary" size="sm" onClick={() => {
+                  <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('elephant');
                     setCorridorsActive(true);
                     setActiveTab('predictor');
@@ -915,12 +933,12 @@ export const Dashboard: React.FC = () => {
 
       case 'habitat':
         return (
-          <div className="space-y-8 animate-fade-in text-left">
+          <div className="space-y-8 text-left">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               {/* Habitat suitability stats */}
-              <Card hoverable={false} className="border-emerald-950/60 bg-brand-card/95">
-                <h3 className="font-bold text-white border-b border-emerald-950/40 pb-3 mb-6">Threat Factor Analysis</h3>
+              <Card hoverable={false} className="border-gray-150 bg-white">
+                <h3 className="font-bold text-gray-900 border-b border-gray-100 pb-3 mb-6">Threat Factor Analysis</h3>
                 <div className="h-[300px] w-full text-xs">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
@@ -931,21 +949,21 @@ export const Dashboard: React.FC = () => {
                       ]}
                       margin={{ top: 20, right: 10, left: -20, bottom: 5 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(16, 185, 129, 0.05)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                       <XAxis dataKey="name" stroke="#9ca3af" />
                       <YAxis stroke="#9ca3af" />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#111a17',
-                          border: '1px solid rgba(16, 185, 129, 0.2)',
+                          backgroundColor: '#ffffff',
+                          border: '1px solid #e5e7eb',
                           borderRadius: '8px',
-                          color: '#fff'
+                          color: '#1f2937'
                         }}
                       />
                       <Bar dataKey="value" name="Threat Intensity %" radius={[6, 6, 0, 0]}>
-                        <Cell fill="#f87171" />
+                        <Cell fill="#ef4444" />
                         <Cell fill="#f59e0b" />
-                        <Cell fill="#60a5fa" />
+                        <Cell fill="#2563eb" />
                       </Bar>
                     </BarChart>
                   </ResponsiveContainer>
@@ -953,15 +971,15 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Environmental variables feedback */}
-              <Card hoverable={false} className="border-emerald-950/60 bg-brand-card/95 p-6 space-y-6">
-                <h3 className="font-bold text-white border-b border-emerald-950/40 pb-3">Habitat Variables Metrics</h3>
+              <Card hoverable={false} className="border-gray-150 bg-white p-6 space-y-6">
+                <h3 className="font-bold text-gray-900 border-b border-gray-100 pb-3">Habitat Variables Metrics</h3>
                 <div className="space-y-5">
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
                       <span className="text-gray-400">Deforestation Rate:</span>
-                      <span className="text-amber-500 font-semibold">{selectedSpecies.threatFactors.deforestation}% Critical</span>
+                      <span className="text-amber-600 font-semibold">{selectedSpecies.threatFactors.deforestation}% Critical</span>
                     </div>
-                    <div className="h-2 w-full bg-emerald-950 rounded-full">
+                    <div className="h-2 w-full bg-gray-100 rounded-full">
                       <div className="h-full bg-amber-500 rounded-full" style={{ width: `${selectedSpecies.threatFactors.deforestation}%` }} />
                     </div>
                   </div>
@@ -969,25 +987,25 @@ export const Dashboard: React.FC = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
                       <span className="text-gray-400">Poaching Incident Frequency:</span>
-                      <span className="text-red-400 font-semibold">{selectedSpecies.threatFactors.poaching}% High</span>
+                      <span className="text-red-600 font-semibold">{selectedSpecies.threatFactors.poaching}% High</span>
                     </div>
-                    <div className="h-2 w-full bg-emerald-950 rounded-full">
-                      <div className="h-full bg-red-400 rounded-full" style={{ width: `${selectedSpecies.threatFactors.poaching}%` }} />
+                    <div className="h-2 w-full bg-gray-100 rounded-full">
+                      <div className="h-full bg-red-500 rounded-full" style={{ width: `${selectedSpecies.threatFactors.poaching}%` }} />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
                       <span className="text-gray-400">Climatic Heat Stress:</span>
-                      <span className="text-blue-400 font-semibold">{selectedSpecies.threatFactors.climate}% Stress</span>
+                      <span className="text-brand-blue font-semibold">{selectedSpecies.threatFactors.climate}% Stress</span>
                     </div>
-                    <div className="h-2 w-full bg-emerald-950 rounded-full">
-                      <div className="h-full bg-blue-400 rounded-full" style={{ width: `${selectedSpecies.threatFactors.climate}%` }} />
+                    <div className="h-2 w-full bg-gray-100 rounded-full">
+                      <div className="h-full bg-brand-blue rounded-full" style={{ width: `${selectedSpecies.threatFactors.climate}%` }} />
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 text-xs text-gray-400 leading-relaxed bg-emerald-950/10 border border-emerald-950/50 p-3 rounded-lg">
+                <div className="pt-4 text-xs text-gray-500 leading-relaxed bg-green-50/50 border border-green-100 p-3 rounded-lg">
                   <strong>Ecologist Recommendation:</strong> To stabilize this species, priorities must shift toward reducing poaching incidents below 30% and implementing local buffer zones.
                 </div>
               </Card>
@@ -1001,13 +1019,13 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-80px)] bg-brand-bg text-white relative">
+    <div className="flex min-h-[calc(100vh-80px)] bg-gray-50 text-gray-800 relative font-['Poppins',sans-serif]">
       
-      {/* Mobile Sidebar Toggle Header (Dashboard scope only) */}
+      {/* Mobile Sidebar Toggle Header */}
       <div className="fixed bottom-4 right-4 z-50 md:hidden">
         <button
           onClick={() => setIsOpenMobile(!isOpenMobile)}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-600 text-white shadow-xl focus:outline-none"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-brand-green text-white shadow-lg focus:outline-none cursor-pointer"
         >
           <FaBars className="h-5 w-5" />
         </button>
@@ -1025,12 +1043,12 @@ export const Dashboard: React.FC = () => {
 
       {/* Main Dashboard Space */}
       <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full relative">
-        <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-emerald-950/40 pb-5 gap-4">
+        <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-200 pb-5 gap-4">
           <div className="text-left">
-            <h1 className="text-3xl font-extrabold tracking-tight text-white capitalize">
+            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 capitalize">
               {activeTab === 'overview' ? 'AI Dashboard Overview' : activeTab}
             </h1>
-            <p className="text-gray-400 text-xs sm:text-sm mt-1">
+            <p className="text-gray-500 text-xs sm:text-sm mt-1">
               {activeTab === 'overview' && 'System overview and real-time biological alerts.'}
               {activeTab === 'predictor' && 'Simulate population dynamics and conservation policy impacts.'}
               {activeTab === 'recommendations' && 'AI recommendations to optimize biological corridors.'}
@@ -1045,11 +1063,11 @@ export const Dashboard: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="relative p-2.5 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-800/30 rounded-xl text-emerald-400 transition-colors focus:outline-none"
+                className="relative p-2.5 bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-xl text-gray-600 transition-colors focus:outline-none cursor-pointer"
               >
                 <FaBell className="h-4.5 w-4.5" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow">
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white shadow-xs">
                     {unreadCount}
                   </span>
                 )}
@@ -1059,20 +1077,20 @@ export const Dashboard: React.FC = () => {
               {showNotifications && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)} />
-                  <div className="absolute right-0 mt-3 w-80 z-50 bg-[#111a17] border border-emerald-950/60 rounded-2xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-left space-y-3">
-                    <div className="flex justify-between items-center border-b border-emerald-950/40 pb-2.5">
-                      <span className="text-xs font-bold text-white">System Notifications</span>
-                      <button onClick={markAllRead} className="text-[10px] text-emerald-400 hover:text-emerald-300 font-semibold focus:outline-none">Mark all read</button>
+                  <div className="absolute right-0 mt-3 w-80 z-50 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg text-left space-y-3">
+                    <div className="flex justify-between items-center border-b border-gray-100 pb-2.5">
+                      <span className="text-xs font-bold text-gray-900">System Notifications</span>
+                      <button onClick={markAllRead} className="text-[10px] text-brand-blue hover:underline font-semibold focus:outline-none cursor-pointer">Mark all read</button>
                     </div>
 
-                    <div className="space-y-2.5 divide-y divide-emerald-950/30 max-h-60 overflow-y-auto">
+                    <div className="space-y-2.5 divide-y divide-gray-100 max-h-60 overflow-y-auto">
                       {notifications.map((notif) => (
-                        <div key={notif.id} className={`pt-2.5 first:pt-0 text-xs flex flex-col space-y-1 ${notif.unread ? 'text-white' : 'text-gray-400'}`}>
+                        <div key={notif.id} className={`pt-2.5 first:pt-0 text-xs flex flex-col space-y-1 ${notif.unread ? 'text-gray-900' : 'text-gray-500'}`}>
                           <div className="flex items-start justify-between">
-                            <span className="leading-relaxed">{notif.text}</span>
-                            {notif.unread && <span className="w-1.5 h-1.5 min-w-[6px] rounded-full bg-emerald-500 mt-1.5 ml-2" />}
+                            <span className="leading-relaxed font-medium">{notif.text}</span>
+                            {notif.unread && <span className="w-1.5 h-1.5 min-w-[6px] rounded-full bg-brand-green mt-1.5 ml-2" />}
                           </div>
-                          <span className="text-[9px] text-gray-500 font-mono">{notif.time}</span>
+                          <span className="text-[9px] text-gray-400 font-mono">{notif.time}</span>
                         </div>
                       ))}
                     </div>
@@ -1100,3 +1118,5 @@ export const Dashboard: React.FC = () => {
     </div>
   );
 };
+
+export default Dashboard;

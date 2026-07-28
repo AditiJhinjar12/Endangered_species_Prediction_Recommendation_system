@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#84CC16" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+  <rect x="10" y="10" width="380" height="280" rx="15" fill="none" stroke="url(#accentGrad)" stroke-width="2" opacity="0.3" />
+  
+  <circle cx="200" cy="120" r="45" fill="#1E293B" stroke="url(#accentGrad)" stroke-width="3" />
+  
+  <!-- Blackbuck spiral horns representation -->
+  <path d="M190 115 Q180 85 175 75 Q182 85 192 110 M210 115 Q220 85 225 75 Q218 85 208 110" fill="url(#accentGrad)" />
+  <path d="M180 130 Q200 120 220 130" fill="none" stroke="url(#accentGrad)" stroke-width="3" />
+  
+  <text x="50%" y="210" text-anchor="middle" font-family="'Poppins', sans-serif" font-weight="bold" font-size="20" fill="#FFFFFF" letter-spacing="1">BLACKBUCK</text>
+  <text x="50%" y="235" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="12" fill="#84CC16" letter-spacing="2">SPECIES FALLBACK REPRESENTATION</text>
+  <text x="50%" y="260" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="11" fill="#475569">ECOPREDICT AI PLATFORM</text>
+</svg>

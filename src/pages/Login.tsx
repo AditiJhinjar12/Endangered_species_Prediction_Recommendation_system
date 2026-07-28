@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaLeaf, FaEnvelope, FaLock, FaArrowLeft } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -28,87 +28,93 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] bg-brand-bg flex items-center justify-center px-4 py-12 overflow-hidden">
-      
-      {/* Background blobs */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-emerald-700/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-emerald-600/10 blur-3xl" />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-        className="w-full max-w-md relative z-10"
-      >
-        {/* Back Link */}
-        <Link to="/" className="inline-flex items-center space-x-2 text-xs text-gray-400 hover:text-emerald-400 mb-6 transition-colors">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden font-['Poppins',sans-serif]">
+      {/* Back Link */}
+      <div className="w-full max-w-md mb-6 text-left">
+        <Link to="/" className="inline-flex items-center space-x-2 text-xs font-medium text-brand-blue hover:underline">
           <FaArrowLeft />
           <span>Back to Landing Page</span>
         </Link>
+      </div>
 
-        <Card hoverable={false} className="p-8 border-emerald-950/60 bg-brand-card/95">
-          <div className="flex flex-col items-center text-center space-y-2 mb-8">
-            <FaLeaf className="h-10 w-10 text-emerald-500 animate-pulse" />
-            <h2 className="text-2xl font-extrabold text-white tracking-wide">Welcome Back</h2>
-            <p className="text-gray-400 text-xs sm:text-sm">Access the Endangered Species AI Dashboard</p>
+      <Card hoverable={false} className="w-full max-w-md p-8 bg-white border border-gray-150 shadow-md">
+        <div className="flex flex-col items-center text-center space-y-2 mb-8">
+          <FaLeaf className="h-8 w-8 text-brand-green" />
+          <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
+          <p className="text-gray-500 text-xs sm:text-sm">Access the Endangered Species AI Dashboard</p>
+        </div>
+
+        <form onSubmit={handleLogin} className="space-y-5 text-left">
+          {error && (
+            <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-lg text-xs font-medium">
+              {error}
+            </div>
+          )}
+
+          {/* Email field */}
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Email Address</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <FaEnvelope className="h-3.5 w-3.5" />
+              </div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="name@university.edu"
+                className="block w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none transition-colors"
+              />
+            </div>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-5">
-            {error && (
-              <div className="p-3 bg-red-950/50 border border-red-500/20 text-red-400 rounded-lg text-xs font-semibold">
-                {error}
+          {/* Password field */}
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Password</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <FaLock className="h-3.5 w-3.5" />
               </div>
-            )}
-
-            {/* Email field */}
-            <div className="space-y-1.5">
-              <label className="block text-xs uppercase tracking-wider text-gray-400 font-semibold">Email Address</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
-                  <FaEnvelope />
-                </div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@university.edu"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-brand-bg/50 border border-emerald-950/60 focus:border-emerald-500 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
-                />
-              </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="block w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none transition-colors"
+              />
             </div>
+          </div>
 
-            {/* Password field */}
-            <div className="space-y-1.5">
-              <label className="block text-xs uppercase tracking-wider text-gray-400 font-semibold">Password</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
-                  <FaLock />
-                </div>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-brand-bg/50 border border-emerald-950/60 focus:border-emerald-500 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
-                />
-              </div>
-            </div>
-
-            <Button type="submit" isLoading={isLoading} className="w-full py-3" variant="primary">
-              Login to Platform
-            </Button>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-emerald-950/40 text-center text-xs text-gray-400">
-            <span>Don't have credentials? </span>
-            <Link to="/register" className="text-emerald-400 hover:text-emerald-300 font-semibold">
-              Create an account
+          {/* Remember Me & Forgot Password */}
+          <div className="flex items-center justify-between text-xs font-medium">
+            <label className="flex items-center space-x-2 text-gray-600 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="rounded border-gray-300 text-brand-blue focus:ring-brand-blue h-4 w-4 cursor-pointer"
+              />
+              <span>Remember Me</span>
+            </label>
+            <Link to="/login" className="text-brand-blue hover:underline">
+              Forgot Password?
             </Link>
           </div>
-        </Card>
-      </motion.div>
+
+          <Button type="submit" isLoading={isLoading} className="w-full py-3" variant="primary">
+            Login
+          </Button>
+        </form>
+
+        <div className="mt-6 pt-6 border-t border-gray-100 text-center text-xs text-gray-500 font-medium">
+          <span>Don't have an account? </span>
+          <Link to="/register" className="text-brand-blue hover:underline font-semibold">
+            Register
+          </Link>
+        </div>
+      </Card>
     </div>
   );
 };
+
+export default Login;

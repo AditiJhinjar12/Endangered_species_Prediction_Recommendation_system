@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -22,13 +21,13 @@ export const Button: React.FC<ButtonProps> = ({
   isLoading = false,
   disabled = false,
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-emerald-600 to-green-500 text-white hover:shadow-[0_0_20px_rgba(34,197,94,0.35)] border border-transparent shadow-lg shadow-emerald-600/20',
-    secondary: 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 shadow-md',
-    outline: 'bg-transparent text-emerald-400 hover:text-white hover:bg-emerald-600/10 border border-emerald-500/40',
-    text: 'bg-transparent text-gray-300 hover:text-white hover:bg-white/5 border border-transparent',
+    primary: 'bg-brand-blue hover:bg-brand-blue-hover text-white shadow-sm cursor-pointer',
+    secondary: 'bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-200 cursor-pointer',
+    outline: 'bg-transparent text-brand-blue hover:bg-brand-blue/5 border border-brand-blue cursor-pointer',
+    text: 'bg-transparent text-brand-blue hover:underline border border-transparent cursor-pointer',
   };
 
   const sizes = {
@@ -38,12 +37,10 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <motion.button
+    <button
       type={type}
       onClick={onClick}
       disabled={disabled || isLoading}
-      whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
-      whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {isLoading ? (
@@ -57,6 +54,6 @@ export const Button: React.FC<ButtonProps> = ({
       ) : (
         children
       )}
-    </motion.button>
+    </button>
   );
 };

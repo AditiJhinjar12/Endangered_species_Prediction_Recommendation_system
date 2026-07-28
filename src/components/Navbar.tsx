@@ -29,14 +29,14 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md shadow-xs">
+    <nav className="sticky top-0 z-50 w-full border-b border-emerald-950/40 bg-[#020905]/80 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left Side: Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <FaLeaf className="h-6 w-6 text-brand-green" />
-              <span className="text-xl font-bold tracking-tight text-gray-900">
+              <span className="text-xl font-bold tracking-tight text-white">
                 EcoPredict<span className="text-brand-green">AI</span>
               </span>
             </Link>
@@ -48,20 +48,20 @@ export const Navbar: React.FC = () => {
               <button
                 key={link.name}
                 onClick={link.action}
-                className="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors focus:outline-none cursor-pointer"
+                className="text-sm font-medium text-emerald-100/70 hover:text-white transition-colors focus:outline-none cursor-pointer"
               >
                 {link.name}
               </button>
             ))}
-            <Link to="/dashboard" className="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">
+            <Link to="/dashboard" className="text-sm font-medium text-emerald-100/70 hover:text-white transition-colors">
               Dashboard
             </Link>
           </div>
-
+ 
           {/* Right Side: Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/login">
-              <Button variant="text" size="sm">
+              <Button variant="text" size="sm" className="text-emerald-100/80 hover:text-white">
                 Login
               </Button>
             </Link>
@@ -76,28 +76,28 @@ export const Navbar: React.FC = () => {
               </Button>
             </Link>
           </div>
-
+ 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2 focus:outline-none transition-colors"
+              className="text-emerald-100/80 hover:text-white p-2 focus:outline-none transition-colors"
             >
               {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
-
+ 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white">
+        <div className="md:hidden border-t border-emerald-950/40 bg-[#020905]">
           <div className="px-4 pt-4 pb-6 space-y-3">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={link.action}
-                className="block w-full text-left px-3 py-2 rounded-md text-base font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                className="block w-full text-left px-3 py-2 rounded-md text-base font-semibold text-emerald-100/70 hover:bg-emerald-950/30 hover:text-white transition-colors"
               >
                 {link.name}
               </button>
@@ -105,13 +105,13 @@ export const Navbar: React.FC = () => {
             <Link
               to="/dashboard"
               onClick={() => setIsOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+              className="block px-3 py-2 rounded-md text-base font-semibold text-emerald-100/70 hover:bg-emerald-950/30 hover:text-white transition-colors"
             >
               Dashboard
             </Link>
-            <div className="pt-4 flex flex-col space-y-2 border-t border-gray-100">
+            <div className="pt-4 flex flex-col space-y-2 border-t border-emerald-950/40">
               <Link to="/login" onClick={() => setIsOpen(false)}>
-                <Button variant="text" className="w-full" size="sm">
+                <Button variant="text" className="w-full text-emerald-100/80" size="sm">
                   Login
                 </Button>
               </Link>

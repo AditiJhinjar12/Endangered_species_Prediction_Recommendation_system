@@ -14,10 +14,10 @@ export const Card: React.FC<CardProps> = ({
   hoverable = true,
   onClick,
 }) => {
-  // Simple, clean white card styling with 12px (rounded-xl) corners and soft shadow
-  const baseStyles = `bg-white border border-gray-100 rounded-xl p-6 transition-all duration-300 relative overflow-hidden ${
+  // Premium dark-green glassmorphic card styling with 12px (rounded-xl) corners, backdrop blur, and soft glow
+  const baseStyles = `bg-emerald-950/25 backdrop-blur-md border border-emerald-500/15 rounded-xl p-6 transition-all duration-300 relative overflow-hidden ${
     onClick ? 'cursor-pointer' : ''
-  } shadow-sm`;
+  } shadow-md shadow-black/10`;
 
   if (hoverable) {
     return (

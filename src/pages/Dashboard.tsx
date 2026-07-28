@@ -211,12 +211,12 @@ export const Dashboard: React.FC = () => {
           <div className="space-y-8 text-left">
             
             {/* Top Welcome Section */}
-            <div className="bg-white border border-gray-150 rounded-xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm">
+            <div className="bg-emerald-950/20 border border-emerald-900/25 rounded-xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm backdrop-blur-md">
               <div>
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900">Welcome back!</h2>
-                <p className="text-gray-500 text-xs md:text-sm mt-1">EcoPredictAI telemetry network is operational and monitoring protected regions.</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">Welcome back!</h2>
+                <p className="text-emerald-100/50 text-xs md:text-sm mt-1">EcoPredictAI telemetry network is operational and monitoring protected regions.</p>
               </div>
-              <div className="flex items-center space-x-2 text-xs font-semibold text-brand-green bg-green-50 border border-green-150 px-3 py-1.5 rounded-xl">
+              <div className="flex items-center space-x-2 text-xs font-semibold text-brand-green bg-emerald-950/45 border border-emerald-800/40 px-3 py-1.5 rounded-xl">
                 <span className="relative flex h-2 w-2">
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
                 </span>
@@ -226,11 +226,11 @@ export const Dashboard: React.FC = () => {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card hoverable={false} className="border-gray-150 bg-white">
+              <Card hoverable={false} className="border-emerald-900/10">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Total Species</p>
-                    <h3 className="text-3xl font-bold text-gray-900 mt-1">520</h3>
+                    <h3 className="text-3xl font-bold text-white mt-1">520</h3>
                   </div>
                   <div className="p-2.5 bg-green-50 border border-green-100 text-brand-green rounded-lg">
                     <FaTree />
@@ -239,7 +239,7 @@ export const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-400 mt-4">Red List catalog operational</div>
               </Card>
 
-              <Card hoverable={false} className="border-gray-150 bg-white">
+              <Card hoverable={false} className="border-emerald-900/10">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Endangered Species</p>
@@ -252,7 +252,7 @@ export const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-400 mt-4">Requiring urgent interventions</div>
               </Card>
 
-              <Card hoverable={false} className="border-gray-150 bg-white">
+              <Card hoverable={false} className="border-emerald-900/10">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Prediction Accuracy</p>
@@ -265,7 +265,7 @@ export const Dashboard: React.FC = () => {
                 <div className="text-xs text-gray-400 mt-4">Based on backtesting validation</div>
               </Card>
 
-              <Card hoverable={false} className="border-gray-150 bg-white">
+              <Card hoverable={false} className="border-emerald-900/10">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Active Alerts</p>
@@ -283,10 +283,10 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               {/* Line Chart: Population Trend */}
-              <Card hoverable={false} className="border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="border-emerald-900/10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
-                    <h3 className="font-bold text-gray-900">Population Trend Projections</h3>
+                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-4">
+                    <h3 className="font-bold text-white">Population Trend Projections</h3>
                     <span className="text-[10px] font-mono text-gray-400">10-year forecasts</span>
                   </div>
                   <div className="h-64 w-full text-xs">
@@ -327,10 +327,10 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Bar Chart: Species Distribution */}
-              <Card hoverable={false} className="border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="border-emerald-900/10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
-                    <h3 className="font-bold text-gray-900">Species Distribution</h3>
+                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-4">
+                    <h3 className="font-bold text-white">Species Distribution</h3>
                     <span className="text-[10px] font-mono text-gray-400">monitored categories %</span>
                   </div>
                   <div className="h-64 w-full text-xs">
@@ -364,12 +364,12 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* SVG Map Panel */}
-              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-2 border-emerald-900/10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-4">
                     <div className="flex items-center space-x-2">
                       <FaMapMarkerAlt className="text-brand-green" />
-                      <h3 className="font-bold text-gray-900">Sanctuary Hotspot Telemetry</h3>
+                      <h3 className="font-bold text-white">Sanctuary Hotspot Telemetry</h3>
                     </div>
                     <span className="text-[10px] font-mono text-gray-400">interactive grids</span>
                   </div>
@@ -431,9 +431,9 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 p-3.5 bg-gray-50 border border-gray-100 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div className="mt-4 p-3.5 bg-gray-50 border border-emerald-950/40 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                   <div className="text-xs space-y-1">
-                    <p className="text-gray-500 font-semibold uppercase tracking-wider">Active Hotspot: <span className="text-gray-900">{activeHotspot.name}</span></p>
+                    <p className="text-gray-500 font-semibold uppercase tracking-wider">Active Hotspot: <span className="text-white">{activeHotspot.name}</span></p>
                     <p className="text-gray-400">Target Species: <span className="text-brand-green">{activeHotspot.species}</span> | Primary Danger: <span className="text-red-600">{activeHotspot.threat}</span></p>
                   </div>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
@@ -449,12 +449,12 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Weather & Climate Widget */}
-              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-1 border-emerald-900/10 flex flex-col justify-between">
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3">
                     <div className="flex items-center space-x-2">
                       <FaCloudSun className="text-brand-green" />
-                      <h3 className="font-bold text-gray-900">Habitat Climate</h3>
+                      <h3 className="font-bold text-white">Habitat Climate</h3>
                     </div>
                   </div>
 
@@ -471,7 +471,7 @@ export const Dashboard: React.FC = () => {
                         className={`p-2 rounded-lg font-semibold transition-colors border ${
                           weatherSanctuary === btn.id
                             ? 'bg-green-50 text-brand-green border-green-100'
-                            : 'bg-gray-50 text-gray-500 border-transparent hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
+                            : 'bg-gray-50 text-gray-500 border-transparent hover:bg-gray-100 hover:text-white cursor-pointer'
                         }`}
                       >
                         {btn.label}
@@ -480,24 +480,24 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   <div className="space-y-4 pt-2">
-                    <div className="text-center p-4 bg-gray-50 border border-gray-100 rounded-xl">
+                    <div className="text-center p-4 bg-gray-50 border border-emerald-950/40 rounded-xl">
                       <p className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">{weather.name}</p>
-                      <h4 className="text-3xl font-bold text-gray-900 mt-2">{weather.temp}</h4>
+                      <h4 className="text-3xl font-bold text-white mt-2">{weather.temp}</h4>
                       <p className="text-xs text-brand-green mt-1 font-medium">{weather.cond}</p>
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 text-center text-[10px] sm:text-xs">
-                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                      <div className="p-2 bg-gray-50 border border-emerald-950/40 rounded-xl">
                         <FaTint className="text-brand-blue mx-auto mb-1" />
                         <span className="block text-[9px] text-gray-400 font-semibold">Humidity</span>
                         <span className="block font-bold text-gray-700 mt-0.5">{weather.humidity}</span>
                       </div>
-                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                      <div className="p-2 bg-gray-50 border border-emerald-950/40 rounded-xl">
                         <FaTree className="text-brand-green mx-auto mb-1" />
                         <span className="block text-[9px] text-gray-400 font-semibold">Canopy</span>
                         <span className="block font-bold text-gray-700 mt-0.5">{weather.canopy}</span>
                       </div>
-                      <div className="p-2 bg-gray-50 border border-gray-100 rounded-xl">
+                      <div className="p-2 bg-gray-50 border border-emerald-950/40 rounded-xl">
                         <FaWind className="text-teal-600 mx-auto mb-1" />
                         <span className="block text-[9px] text-gray-400 font-semibold">Wind</span>
                         <span className="block font-bold text-gray-700 mt-0.5">{weather.wind}</span>
@@ -506,7 +506,7 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="text-[10px] text-gray-400 leading-relaxed text-left border-t border-gray-100 pt-4 mt-6">
+                <div className="text-[10px] text-gray-400 leading-relaxed text-left border-t border-emerald-950/40 pt-4 mt-6">
                   * Meteorological feeds sync directly with climate sensors hourly.
                 </div>
               </Card>
@@ -517,9 +517,9 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* Predictions Table */}
-              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white overflow-hidden">
-                <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
-                  <h3 className="font-bold text-gray-900">Recent Predictions Table</h3>
+              <Card hoverable={false} className="lg:col-span-2 border-emerald-900/10 overflow-hidden">
+                <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-6">
+                  <h3 className="font-bold text-white">Recent Predictions Table</h3>
                   <span className="text-[10px] font-mono text-gray-400">ML Forecast outputs</span>
                 </div>
 
@@ -535,25 +535,25 @@ export const Dashboard: React.FC = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       <tr className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Bengal Tiger</td>
+                        <td className="py-3.5 pr-2 font-semibold text-white">Bengal Tiger</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">3,890</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">4,450 (10-yr)</td>
                         <td className="py-3.5 pl-2 text-right"><span className="bg-red-50 text-red-600 border border-red-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Endangered</span></td>
                       </tr>
                       <tr className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Snow Leopard</td>
+                        <td className="py-3.5 pr-2 font-semibold text-white">Snow Leopard</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">4,500</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">3,200 (10-yr)</td>
                         <td className="py-3.5 pl-2 text-right"><span className="bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Vulnerable</span></td>
                       </tr>
                       <tr className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-3.5 pr-2 font-semibold text-gray-900">Asian Elephant</td>
+                        <td className="py-3.5 pr-2 font-semibold text-white">Asian Elephant</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">48,400</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">42,000 (10-yr)</td>
                         <td className="py-3.5 pl-2 text-right"><span className="bg-red-50 text-red-600 border border-red-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Endangered</span></td>
                       </tr>
                       <tr className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-3.5 pr-2 font-semibold text-gray-900">One-Horned Rhino</td>
+                        <td className="py-3.5 pr-2 font-semibold text-white">One-Horned Rhino</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">3,580</td>
                         <td className="py-3.5 px-2 text-center text-gray-600">3,850 (10-yr)</td>
                         <td className="py-3.5 pl-2 text-right"><span className="bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-0.5 rounded text-[10px] font-semibold">Vulnerable</span></td>
@@ -564,40 +564,40 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Latest Alerts */}
-              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-1 border-emerald-900/10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
+                  <div className="flex items-center justify-between border-b border-emerald-950/40 pb-3 mb-6">
                     <div className="flex items-center space-x-2">
                       <FaRegClock className="text-brand-green" />
-                      <h3 className="font-bold text-gray-900">Latest Alerts</h3>
+                      <h3 className="font-bold text-white">Latest Alerts</h3>
                     </div>
                   </div>
 
-                  <div className="space-y-6 relative text-xs pl-4 border-l border-gray-100 ml-2">
+                  <div className="space-y-6 relative text-xs pl-4 border-l border-emerald-950/40 ml-2">
                     <div className="relative">
                       <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-green border border-white" />
                       <p className="text-[10px] text-brand-green font-bold uppercase">10 mins ago</p>
-                      <p className="text-gray-900 font-semibold mt-0.5">Canopy coverage decline</p>
+                      <p className="text-white font-semibold mt-0.5">Canopy coverage decline</p>
                       <p className="text-gray-400 text-[10px]">Tiger Sector Alpha logged a 4.2% drop.</p>
                     </div>
 
                     <div className="relative">
                       <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-green border border-white" />
                       <p className="text-[10px] text-brand-green font-bold uppercase">1 hr ago</p>
-                      <p className="text-gray-900 font-semibold mt-0.5">Sensor re-established sync</p>
+                      <p className="text-white font-semibold mt-0.5">Sensor re-established sync</p>
                       <p className="text-gray-400 text-[10px]">Himalayan Ridge Grid sensor node re-sync.</p>
                     </div>
 
                     <div className="relative">
                       <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-amber-500 border border-white" />
                       <p className="text-[10px] text-amber-500 font-bold uppercase">4 hrs ago</p>
-                      <p className="text-gray-900 font-semibold mt-0.5">Poaching threat alert</p>
+                      <p className="text-white font-semibold mt-0.5">Poaching threat alert</p>
                       <p className="text-gray-400 text-[10px]">High poaching index logged at Kaziranga.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 border-t border-gray-100 pt-4">
+                <div className="mt-6 border-t border-emerald-950/40 pt-4">
                   <div className="flex items-center space-x-2 text-[10px] text-brand-green bg-green-50 px-2.5 py-1.5 rounded-lg border border-green-100">
                     <FaInfoCircle />
                     <span>Ranger dispatch sync is operational</span>
@@ -610,23 +610,23 @@ export const Dashboard: React.FC = () => {
             {/* Recent Recommendations */}
             <div className="space-y-6">
               <div className="flex justify-between items-center text-left">
-                <h3 className="text-lg font-bold text-gray-900">Recent Recommendations</h3>
+                <h3 className="text-lg font-bold text-white">Recent Recommendations</h3>
                 <button onClick={() => setActiveTab('recommendations')} className="text-xs text-brand-blue hover:underline font-semibold cursor-pointer">View All Policies →</button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                <Card hoverable className="border-emerald-900/10 flex flex-col justify-between text-left h-full">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <span className="bg-red-50 border border-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
                       <span className="text-xs text-gray-400 font-mono">ID: AI-P12</span>
                     </div>
-                    <h4 className="font-bold text-gray-900 text-base">Autonomous Drone Patrolling</h4>
+                    <h4 className="font-bold text-white text-base">Autonomous Drone Patrolling</h4>
                     <p className="text-xs text-gray-500 leading-relaxed">
                       Deploy thermal-equipped AI drone swarms in high poaching regions to alert ranger units.
                     </p>
                   </div>
-                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                  <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                     <span className="text-gray-400">Target: Bengal Tiger</span>
                     <Button variant="outline" size="sm" onClick={() => {
                       setSelectedSpeciesId('tiger');
@@ -638,18 +638,18 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </Card>
 
-                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                <Card hoverable className="border-emerald-900/10 flex flex-col justify-between text-left h-full">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <span className="bg-amber-50 border border-amber-100 text-amber-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
                       <span className="text-xs text-gray-400 font-mono">ID: AI-P08</span>
                     </div>
-                    <h4 className="font-bold text-gray-900 text-base">Community Eco-Insurance</h4>
+                    <h4 className="font-bold text-white text-base">Community Eco-Insurance</h4>
                     <p className="text-xs text-gray-500 leading-relaxed">
                       Subsidize livestock insurance in high-altitude communities to prevent retaliatory killings.
                     </p>
                   </div>
-                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                  <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                     <span className="text-gray-400">Target: Snow Leopard</span>
                     <Button variant="outline" size="sm" onClick={() => {
                       setSelectedSpeciesId('leopard');
@@ -661,18 +661,18 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </Card>
 
-                <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between text-left h-full">
+                <Card hoverable className="border-emerald-900/10 flex flex-col justify-between text-left h-full">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <span className="bg-green-50 border border-green-100 text-brand-green text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Optimal</span>
                       <span className="text-xs text-gray-400 font-mono">ID: AI-P04</span>
                     </div>
-                    <h4 className="font-bold text-gray-900 text-base">Agricultural Buffer Zones</h4>
+                    <h4 className="font-bold text-white text-base">Agricultural Buffer Zones</h4>
                     <p className="text-xs text-gray-500 leading-relaxed">
                       Plant repellent crops on agricultural borders to prevent elephant crop raids.
                     </p>
                   </div>
-                  <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                  <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                     <span className="text-gray-400">Target: Asian Elephant</span>
                     <Button variant="outline" size="sm" onClick={() => {
                       setSelectedSpeciesId('elephant');
@@ -696,11 +696,11 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* Species Selector and sliders */}
-              <Card hoverable={false} className="lg:col-span-1 border-gray-150 bg-white flex flex-col justify-between">
+              <Card hoverable={false} className="lg:col-span-1 border-emerald-900/10 flex flex-col justify-between">
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-2 border-b border-gray-100 pb-3">
+                  <div className="flex items-center space-x-2 border-b border-emerald-950/40 pb-3">
                     <FaSlidersH className="text-brand-green" />
-                    <h3 className="font-bold text-gray-900">Simulation Controls</h3>
+                    <h3 className="font-bold text-white">Simulation Controls</h3>
                   </div>
 
                   {/* Species Selector */}
@@ -719,9 +719,9 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Anti-poaching toggle */}
-                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-emerald-950/40 rounded-xl">
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-gray-900">Anti-Poaching Patrols</h4>
+                      <h4 className="text-xs sm:text-sm font-bold text-white">Anti-Poaching Patrols</h4>
                       <p className="text-[10px] text-gray-400 mt-0.5">Increases forest guards by 40%</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -739,9 +739,9 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Forest corridors toggle */}
-                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 border border-emerald-950/40 rounded-xl">
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-gray-900">Wildlife Corridors</h4>
+                      <h4 className="text-xs sm:text-sm font-bold text-white">Wildlife Corridors</h4>
                       <p className="text-[10px] text-gray-400 mt-0.5">Connects fragmented habitats</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -778,7 +778,7 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-gray-100">
+                <div className="mt-8 pt-4 border-t border-emerald-950/40">
                   <div className="p-3.5 bg-green-50 border border-green-100 rounded-xl text-center">
                     <span className="block text-[10px] text-gray-500 uppercase font-semibold">Calculated Protection Score</span>
                     <span className="block text-2xl font-extrabold text-brand-green mt-1">{interventionScore}/100</span>
@@ -787,10 +787,10 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Projections graph */}
-              <Card hoverable={false} className="lg:col-span-2 border-gray-150 bg-white flex flex-col">
-                <div className="flex justify-between items-center border-b border-gray-100 pb-3 mb-6">
+              <Card hoverable={false} className="lg:col-span-2 border-emerald-900/10 flex flex-col">
+                <div className="flex justify-between items-center border-b border-emerald-950/40 pb-3 mb-6">
                   <div>
-                    <h3 className="font-bold text-gray-900">{selectedSpecies.name} Projections</h3>
+                    <h3 className="font-bold text-white">{selectedSpecies.name} Projections</h3>
                     <p className="text-xs text-gray-400 italic mt-0.5">{selectedSpecies.scientificName}</p>
                   </div>
                   <div className={`px-2.5 py-1 rounded-md text-xs font-semibold border ${
@@ -852,25 +852,25 @@ export const Dashboard: React.FC = () => {
         return (
           <div className="space-y-8 text-left">
             <div className="max-w-3xl space-y-2">
-              <h2 className="text-2xl font-bold text-gray-900">AI Policy & Intervention Recommendations</h2>
+              <h2 className="text-2xl font-bold text-white">AI Policy & Intervention Recommendations</h2>
               <p className="text-sm text-gray-500">
                 EcoPredictAI has cross-referenced telemetry alerts with local variables to formulate these recommendations.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
+              <Card hoverable className="border-emerald-900/10 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="bg-red-50 border border-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Critical</span>
                     <span className="text-xs text-gray-400 font-mono">ID: AI-P12</span>
                   </div>
-                  <h4 className="font-bold text-gray-900 text-base">Autonomous Drone Patrolling</h4>
+                  <h4 className="font-bold text-white text-base">Autonomous Drone Patrolling</h4>
                   <p className="text-xs text-gray-500 leading-relaxed">
                     Deploy thermal-equipped AI drone swarms in high poaching regions to alert ranger units of illegal campfires or movement.
                   </p>
                 </div>
-                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Bengal Tiger</span>
                   <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('tiger');
@@ -882,18 +882,18 @@ export const Dashboard: React.FC = () => {
                 </div>
               </Card>
 
-              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
+              <Card hoverable className="border-emerald-900/10 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="bg-amber-50 border border-amber-100 text-amber-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Medium</span>
                     <span className="text-xs text-gray-400 font-mono">ID: AI-P08</span>
                   </div>
-                  <h4 className="font-bold text-gray-900 text-base">Community Eco-Insurance</h4>
+                  <h4 className="font-bold text-white text-base">Community Eco-Insurance</h4>
                   <p className="text-xs text-gray-500 leading-relaxed">
                     Subsidize livestock insurance in high-altitude communities to prevent retaliatory killings of leopards when stock is lost.
                   </p>
                 </div>
-                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Snow Leopard</span>
                   <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('leopard');
@@ -905,18 +905,18 @@ export const Dashboard: React.FC = () => {
                 </div>
               </Card>
 
-              <Card hoverable className="border-gray-150 bg-white flex flex-col justify-between h-full">
+              <Card hoverable className="border-emerald-900/10 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
                     <span className="bg-green-50 border border-green-100 text-brand-green text-[10px] px-2 py-0.5 rounded font-bold uppercase">Priority: Optimal</span>
                     <span className="text-xs text-gray-400 font-mono">ID: AI-P04</span>
                   </div>
-                  <h4 className="font-bold text-gray-900 text-base">Agricultural Buffer Zones</h4>
+                  <h4 className="font-bold text-white text-base">Agricultural Buffer Zones</h4>
                   <p className="text-xs text-gray-500 leading-relaxed">
                     Plant repellent crop barriers (like chili or citrus) on agricultural borders to prevent elephant crop raids and conflicts.
                   </p>
                 </div>
-                <div className="border-t border-gray-100 pt-4 mt-6 flex justify-between items-center text-xs">
+                <div className="border-t border-emerald-950/40 pt-4 mt-6 flex justify-between items-center text-xs">
                   <span className="text-gray-400">Target: Asian Elephant</span>
                   <Button variant="outline" size="sm" onClick={() => {
                     setSelectedSpeciesId('elephant');
@@ -937,8 +937,8 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               {/* Habitat suitability stats */}
-              <Card hoverable={false} className="border-gray-150 bg-white">
-                <h3 className="font-bold text-gray-900 border-b border-gray-100 pb-3 mb-6">Threat Factor Analysis</h3>
+              <Card hoverable={false} className="border-emerald-900/10">
+                <h3 className="font-bold text-white border-b border-emerald-950/40 pb-3 mb-6">Threat Factor Analysis</h3>
                 <div className="h-[300px] w-full text-xs">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
@@ -971,8 +971,8 @@ export const Dashboard: React.FC = () => {
               </Card>
 
               {/* Environmental variables feedback */}
-              <Card hoverable={false} className="border-gray-150 bg-white p-6 space-y-6">
-                <h3 className="font-bold text-gray-900 border-b border-gray-100 pb-3">Habitat Variables Metrics</h3>
+              <Card hoverable={false} className="border-emerald-900/10 p-6 space-y-6">
+                <h3 className="font-bold text-white border-b border-emerald-950/40 pb-3">Habitat Variables Metrics</h3>
                 <div className="space-y-5">
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
@@ -1019,7 +1019,35 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-80px)] bg-gray-50 text-gray-800 relative font-['Poppins',sans-serif]">
+    <div className="flex min-h-[calc(100vh-80px)] bg-[#020905] text-emerald-100/90 relative font-['Poppins',sans-serif] overflow-hidden">
+      
+      {/* Ambient background decoration blobs */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        {/* Soft glowing ambient circle 1 (top-right) */}
+        <div 
+          className="absolute -top-[15%] -right-[15%] w-[60%] h-[60%] rounded-full bg-gradient-to-br from-emerald-800/15 to-emerald-950/5 blur-[130px] opacity-75 animate-pulse" 
+          style={{ animationDuration: '8s' }} 
+        />
+        {/* Soft glowing ambient circle 2 (bottom-left) */}
+        <div 
+          className="absolute top-[35%] -left-[15%] w-[50%] h-[50%] rounded-full bg-gradient-to-tr from-emerald-700/15 to-teal-900/10 blur-[120px] opacity-70 animate-pulse" 
+          style={{ animationDuration: '12s' }} 
+        />
+        {/* Soft glowing ambient circle 3 (bottom-right) */}
+        <div 
+          className="absolute -bottom-[10%] right-[10%] w-[45%] h-[45%] rounded-full bg-gradient-to-br from-lime-800/15 to-emerald-900/10 blur-[110px] opacity-75 animate-pulse" 
+          style={{ animationDuration: '10s' }} 
+        />
+        
+        {/* Modern engineering dot-grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.12]" 
+          style={{ 
+            backgroundImage: 'radial-gradient(#10b981 1px, transparent 1px)', 
+            backgroundSize: '28px 28px' 
+          }} 
+        />
+      </div>
       
       {/* Mobile Sidebar Toggle Header */}
       <div className="fixed bottom-4 right-4 z-50 md:hidden">
@@ -1042,10 +1070,10 @@ export const Dashboard: React.FC = () => {
       />
 
       {/* Main Dashboard Space */}
-      <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full relative">
+      <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full relative z-10">
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-200 pb-5 gap-4">
           <div className="text-left">
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 capitalize">
+            <h1 className="text-3xl font-extrabold tracking-tight text-white capitalize">
               {activeTab === 'overview' ? 'AI Dashboard Overview' : activeTab}
             </h1>
             <p className="text-gray-500 text-xs sm:text-sm mt-1">
@@ -1063,11 +1091,11 @@ export const Dashboard: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="relative p-2.5 bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-xl text-gray-600 transition-colors focus:outline-none cursor-pointer"
+                className="relative p-2.5 bg-emerald-950/45 hover:bg-emerald-900/60 border border-emerald-850/40 rounded-xl text-emerald-100 transition-colors focus:outline-none cursor-pointer"
               >
                 <FaBell className="h-4.5 w-4.5" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white shadow-xs">
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-650 text-[10px] font-bold text-white shadow-xs">
                     {unreadCount}
                   </span>
                 )}
@@ -1077,15 +1105,15 @@ export const Dashboard: React.FC = () => {
               {showNotifications && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowNotifications(false)} />
-                  <div className="absolute right-0 mt-3 w-80 z-50 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg text-left space-y-3">
-                    <div className="flex justify-between items-center border-b border-gray-100 pb-2.5">
-                      <span className="text-xs font-bold text-gray-900">System Notifications</span>
-                      <button onClick={markAllRead} className="text-[10px] text-brand-blue hover:underline font-semibold focus:outline-none cursor-pointer">Mark all read</button>
+                  <div className="absolute right-0 mt-3 w-80 z-50 bg-[#020905]/95 border border-emerald-900/35 rounded-2xl p-4 shadow-lg text-left space-y-3 backdrop-blur-md">
+                    <div className="flex justify-between items-center border-b border-emerald-950/40 pb-2.5">
+                      <span className="text-xs font-bold text-white">System Notifications</span>
+                      <button onClick={markAllRead} className="text-[10px] text-brand-green hover:underline font-semibold focus:outline-none cursor-pointer">Mark all read</button>
                     </div>
 
-                    <div className="space-y-2.5 divide-y divide-gray-100 max-h-60 overflow-y-auto">
+                    <div className="space-y-2.5 divide-y divide-emerald-950/40 max-h-60 overflow-y-auto">
                       {notifications.map((notif) => (
-                        <div key={notif.id} className={`pt-2.5 first:pt-0 text-xs flex flex-col space-y-1 ${notif.unread ? 'text-gray-900' : 'text-gray-500'}`}>
+                        <div key={notif.id} className={`pt-2.5 first:pt-0 text-xs flex flex-col space-y-1 ${notif.unread ? 'text-white' : 'text-gray-500'}`}>
                           <div className="flex items-start justify-between">
                             <span className="leading-relaxed font-medium">{notif.text}</span>
                             {notif.unread && <span className="w-1.5 h-1.5 min-w-[6px] rounded-full bg-brand-green mt-1.5 ml-2" />}

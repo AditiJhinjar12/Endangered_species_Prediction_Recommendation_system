@@ -7,7 +7,6 @@ import {
   FaChartLine,
   FaLightbulb,
   FaLeaf,
-  FaFileAlt,
   FaArrowRight,
   FaDatabase,
   FaBrain,
@@ -17,31 +16,31 @@ import {
 export default function Landing() {
   const stats = [
     { value: "120+", label: "Species Monitored" },
-    { value: "95%", label: "Prediction Accuracy" },
-    { value: "40+", label: "Protected Regions" },
-    { value: "500+", label: "Research Records" },
+    { value: "95%", label: "Model Confidence" },
+    { value: "1,248+", label: "Research Records" },
+    { value: "10+", label: "Years of Historical Data" },
   ];
 
   const features = [
     {
+      icon: <FaLeaf className="text-3xl text-brand-green" />,
+      title: "Species Research",
+      description: "Access high-fidelity biological profiles, threat indexes, and regional distribution census trackers.",
+    },
+    {
       icon: <FaChartLine className="text-3xl text-brand-green" />,
       title: "Population Prediction",
-      description: "Predict future population trends.",
+      description: "Forecast future survival curves over 10-year periods using time-series neural network modeling.",
     },
     {
       icon: <FaLightbulb className="text-3xl text-brand-green" />,
-      title: "AI Recommendation",
-      description: "Suggest conservation strategies.",
+      title: "Conservation Recommendations",
+      description: "Deploy data-driven policies and localized interventions mapped to threat severity matrices.",
     },
     {
-      icon: <FaLeaf className="text-3xl text-brand-green" />,
-      title: "Species Monitoring",
-      description: "Track endangered species.",
-    },
-    {
-      icon: <FaFileAlt className="text-3xl text-brand-green" />,
-      title: "Reports",
-      description: "Generate conservation reports.",
+      icon: <FaDatabase className="text-3xl text-brand-green" />,
+      title: "Research Dataset",
+      description: "Interact with raw biological records, apply advanced filters, and export logs in CSV/JSON/Excel formats.",
     },
   ];
 
@@ -77,23 +76,18 @@ export default function Landing() {
       
       {/* Ambient background decoration blobs */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        {/* Soft glowing ambient circle 1 (top-right) */}
         <div 
           className="absolute -top-[10%] -right-[10%] w-[55%] h-[55%] rounded-full bg-gradient-to-br from-emerald-800/15 to-emerald-950/5 blur-[130px] opacity-75 animate-pulse" 
           style={{ animationDuration: '9s' }} 
         />
-        {/* Soft glowing ambient circle 2 (middle-left) */}
         <div 
           className="absolute top-[30%] -left-[10%] w-[45%] h-[45%] rounded-full bg-gradient-to-tr from-emerald-700/15 to-teal-900/10 blur-[120px] opacity-70 animate-pulse" 
           style={{ animationDuration: '13s' }} 
         />
-        {/* Soft glowing ambient circle 3 (bottom-right) */}
         <div 
           className="absolute -bottom-[5%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-lime-800/15 to-emerald-900/10 blur-[110px] opacity-75 animate-pulse" 
           style={{ animationDuration: '11s' }} 
         />
-        
-        {/* Modern engineering dot-grid pattern overlay */}
         <div 
           className="absolute inset-0 opacity-[0.12]" 
           style={{ 
@@ -109,37 +103,35 @@ export default function Landing() {
       {/* Hero Section */}
       <section id="home" className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-transparent z-10">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 grid md:grid-cols-2 gap-12 items-center relative">
+          
           {/* Hero Left Side */}
           <div className="text-left space-y-6">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
-              Protect Endangered <br className="hidden sm:inline" />
-              Species with <span className="text-brand-green font-black">AI</span>
+              Predict. Understand. <br className="hidden sm:inline" />
+              <span className="text-brand-green font-black">Protect.</span>
             </h1>
             <p className="text-base sm:text-lg text-emerald-100/75 leading-relaxed max-w-xl">
-              Predict wildlife populations and receive conservation recommendations using Artificial Intelligence and environmental data.
+              EcoPredictAI is an AI-powered wildlife research platform for analyzing endangered species populations, forecasting future trends, and generating data-driven conservation recommendations.
             </p>
+            
             <div className="flex flex-wrap gap-4 pt-2">
-              <Link to="/register">
+              <Link to="/species">
                 <Button variant="primary" size="lg" className="flex items-center gap-2">
-                  Get Started
+                  Explore Species
                   <FaArrowRight className="text-sm" />
                 </Button>
               </Link>
-              <button 
-                onClick={() => {
-                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none px-8 py-3.5 text-base md:text-lg bg-transparent text-brand-green hover:underline border border-transparent cursor-pointer"
-              >
-                Learn More
-              </button>
+              <Link to="/research-data">
+                <Button variant="outline" size="lg">
+                  Explore Research
+                </Button>
+              </Link>
             </div>
           </div>
 
           {/* Hero Right Side */}
           <div className="flex justify-center">
             <div className="relative w-full max-w-md">
-              {/* Decorative minimal back-plate */}
               <div className="absolute -inset-1.5 bg-emerald-950/50 rounded-2xl blur-xs opacity-60"></div>
               <img
                 src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&q=80&w=600"
@@ -209,7 +201,6 @@ export default function Landing() {
             </p>
           </div>
 
-          {/* Timeline - Horizontal on Large Screens, Vertical on Mobile */}
           <div className="relative">
             <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-emerald-950/40 -translate-y-1/2 z-0" />
             <div className="grid lg:grid-cols-4 gap-8 relative z-10">

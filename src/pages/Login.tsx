@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaLeaf, FaEnvelope, FaLock, FaArrowLeft } from 'react-icons/fa';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { supabase } from '../supabaseClient';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export const Login: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       setError('Please fill in all fields.');
@@ -20,11 +21,26 @@ export const Login: React.FC = () => {
     }
     setError('');
     setIsLoading(true);
-    // Simulate API request
-    setTimeout(() => {
+    
+    try {
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        setError(signInError.message);
+        return;
+      }
+
+      if (data?.session) {
+        navigate('/dashboard');
+      }
+    } catch (err: any) {
+      setError(err?.message || 'Login failed.');
+    } finally {
       setIsLoading(false);
-      navigate('/dashboard');
-    }, 1200);
+    }
   };
 
   return (

@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaChartLine, FaLightbulb, FaGlobe, FaChevronLeft, FaChevronRight, FaDatabase, FaLeaf } from 'react-icons/fa';
+import { FaChartLine, FaLightbulb, FaGlobe, FaChevronLeft, FaChevronRight, FaDatabase, FaLeaf, FaRobot, FaExchangeAlt, FaSlidersH } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 interface SidebarProps {
@@ -19,11 +18,56 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpenMobile,
   setIsOpenMobile,
 }) => {
-  const tabs = [
-    { id: 'overview', name: 'Overview', icon: FaLeaf },
-    { id: 'predictor', name: 'Population Predictor', icon: FaChartLine },
-    { id: 'recommendations', name: 'AI Recommendations', icon: FaLightbulb },
-    { id: 'habitat', name: 'Habitat Analysis', icon: FaGlobe },
+
+  interface SidebarItem {
+    id: string;
+    name: string;
+    icon: any;
+    path?: string;
+    action?: () => void;
+  }
+
+  const sections: { title: string; items: SidebarItem[] }[] = [
+    {
+      title: 'Overview',
+      items: [
+        { id: 'dashboard', name: 'Overview', icon: FaLeaf, path: 'dashboard' }
+      ]
+    },
+    {
+      title: 'Research',
+      items: [
+        { id: 'species', name: 'Species Explorer', icon: FaGlobe, path: 'species' },
+        { id: 'research-data', name: 'Research Data', icon: FaDatabase, path: 'research-data' },
+        { id: 'compare', name: 'Species Comparison', icon: FaExchangeAlt, path: 'compare' }
+      ]
+    },
+    {
+      title: 'Analysis',
+      items: [
+        { id: 'predictions', name: 'Population Prediction', icon: FaChartLine, path: 'predictions' },
+        { id: 'recommendations', name: 'Recommendations', icon: FaLightbulb, path: 'recommendations' }
+      ]
+    },
+    {
+      title: 'Management',
+      items: [
+        { id: 'admin', name: 'Admin Portal', icon: FaSlidersH, path: 'admin' }
+      ]
+    },
+    {
+      title: 'System',
+      items: [
+        { 
+          id: 'assistant', 
+          name: 'AI Research Assistant', 
+          icon: FaRobot, 
+          action: () => {
+            window.dispatchEvent(new CustomEvent('toggle-ecobot'));
+          }
+        }
+      ]
+    }
   ];
 
   const sidebarVariants = {
@@ -37,7 +81,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {isOpenMobile && (
         <div
           onClick={() => setIsOpenMobile(false)}
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs md:hidden"
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden"
         />
       )}
 
@@ -46,63 +90,92 @@ export const Sidebar: React.FC<SidebarProps> = ({
         animate={isCollapsed ? 'collapsed' : 'expanded'}
         variants={sidebarVariants}
         transition={{ type: 'spring', stiffness: 220, damping: 22 }}
-        className={`fixed md:sticky top-20 bottom-0 left-0 z-40 h-[calc(100vh-80px)] bg-white border-r border-gray-200 text-gray-700 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed md:sticky top-0 bottom-0 left-0 z-45 h-screen bg-[#020905]/95 border-r border-emerald-950/40 text-emerald-100 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 ${
           isOpenMobile ? 'translate-x-0 w-[260px]' : '-translate-x-full md:block'
         }`}
       >
-        <div className="py-6 px-4 flex flex-col space-y-6">
-          {/* Collapse Button (Desktop only) */}
-          <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden md:flex items-center justify-center self-end w-8 h-8 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-500 border border-gray-200 transition-colors cursor-pointer"
-          >
-            {isCollapsed ? <FaChevronRight className="h-3 w-3" /> : <FaChevronLeft className="h-3 w-3" />}
-          </button>
+        <div className="py-6 px-4 flex flex-col space-y-6 overflow-y-auto flex-1">
+          {/* Brand header / Collapse button */}
+          <div className="flex items-center justify-between border-b border-emerald-950/45 pb-4">
+            {!isCollapsed && (
+              <div className="flex items-center space-x-2">
+                <FaLeaf className="h-5 w-5 text-brand-green" />
+                <span className="font-extrabold text-sm tracking-wide text-white uppercase">EcoPredictAI</span>
+              </div>
+            )}
+            {isCollapsed && (
+              <FaLeaf className="h-5 w-5 text-brand-green mx-auto mb-1" />
+            )}
+            
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="hidden md:flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-950/20 hover:bg-emerald-900/40 text-emerald-100/60 border border-emerald-900/30 transition-colors cursor-pointer"
+            >
+              {isCollapsed ? <FaChevronRight className="h-2.5 w-2.5" /> : <FaChevronLeft className="h-2.5 w-2.5" />}
+            </button>
+          </div>
 
-          {/* Navigation Tabs */}
-          <nav className="flex flex-col space-y-1.5">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
+          {/* Navigation Categories */}
+          <nav className="flex flex-col space-y-5 text-left">
+            {sections.map((section, sIdx) => (
+              <div key={sIdx} className="space-y-1.5">
+                {/* Category Title */}
+                {!isCollapsed && (
+                  <h4 className="text-[9px] font-bold text-gray-500 uppercase tracking-widest pl-3 mb-2 select-none">
+                    {section.title}
+                  </h4>
+                )}
 
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    setIsOpenMobile(false);
-                  }}
-                  className={`relative flex items-center w-full p-3 rounded-xl font-medium transition-all duration-200 text-left group cursor-pointer ${
-                    isActive
-                      ? 'text-brand-green bg-green-50/70 border border-green-100'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 border border-transparent'
-                  }`}
-                >
-                  <Icon className={`h-5 w-5 min-w-[20px] transition-colors ${isActive ? 'text-brand-green' : 'text-gray-400 group-hover:text-brand-green'}`} />
-                  
-                  {!isCollapsed && (
-                    <span className="ml-4 text-sm truncate">{tab.name}</span>
-                  )}
-                  
-                  {isCollapsed && (
-                    <div className="absolute left-16 scale-0 bg-gray-900 text-white text-xs px-2.5 py-1.5 rounded-md shadow-md pointer-events-none group-hover:scale-100 transition-all duration-200 whitespace-nowrap z-50">
-                      {tab.name}
-                    </div>
-                  )}
-                </button>
-              );
-            })}
+                <div className="space-y-1">
+                  {section.items.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeTab === item.id;
+
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          if (item.action) {
+                            item.action();
+                          } else if (item.path) {
+                            setActiveTab(item.path);
+                          }
+                          setIsOpenMobile(false);
+                        }}
+                        className={`relative flex items-center w-full p-2.5 rounded-xl font-medium transition-all duration-200 text-left group cursor-pointer border ${
+                          isActive
+                            ? 'text-brand-green bg-emerald-950/45 border-brand-green/20'
+                            : 'text-emerald-100/60 hover:text-white hover:bg-emerald-950/25 border-transparent'
+                        }`}
+                      >
+                        <Icon className={`h-4.5 w-4.5 min-w-[18px] transition-colors ${isActive ? 'text-brand-green' : 'text-emerald-100/40 group-hover:text-brand-green'}`} />
+                        
+                        {!isCollapsed && (
+                          <span className="ml-3.5 text-xs truncate">{item.name}</span>
+                        )}
+                        
+                        {isCollapsed && (
+                          <div className="absolute left-16 scale-0 bg-emerald-950 text-white text-[10px] px-2.5 py-1.5 rounded-md border border-emerald-900/30 shadow-lg pointer-events-none group-hover:scale-100 transition-all duration-200 whitespace-nowrap z-50">
+                            {item.name}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
         </div>
 
-        {/* Footer Metrics inside Sidebar */}
-        <div className="p-4 border-t border-gray-100 bg-gray-50/50">
-          <div className="flex items-center space-x-3">
-            <FaDatabase className="text-brand-green/60 h-5 w-5 min-w-[20px]" />
+        {/* Sidebar Footer Database Status */}
+        <div className="p-4 border-t border-emerald-950/40 bg-emerald-950/5">
+          <div className="flex items-center space-x-3 text-left">
+            <FaDatabase className="text-brand-green/60 h-4 w-4 min-w-[16px]" />
             {!isCollapsed && (
-              <div className="truncate text-left">
-                <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Active Database</p>
-                <p className="text-xs text-gray-700 font-medium truncate">Redlist Species v26.1</p>
+              <div className="truncate">
+                <p className="text-[8px] text-gray-500 uppercase tracking-widest font-semibold">Active Database</p>
+                <p className="text-[10px] text-emerald-100/70 font-medium truncate font-mono">Redlist Species v26.1</p>
               </div>
             )}
           </div>
@@ -111,3 +184,4 @@ export const Sidebar: React.FC<SidebarProps> = ({
     </>
   );
 };
+export default Sidebar;

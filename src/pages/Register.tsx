@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaLeaf, FaEnvelope, FaLock, FaUser, FaArrowLeft } from 'react-icons/fa';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { supabase } from '../supabaseClient';
 
 export const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -13,7 +14,7 @@ export const Register: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all required fields.');
@@ -25,11 +26,37 @@ export const Register: React.FC = () => {
     }
     setError('');
     setIsLoading(true);
-    // Simulate API registration
-    setTimeout(() => {
+    
+    try {
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+          },
+          emailRedirectTo: window.location.origin + '/#/login',
+        },
+      });
+
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+
+      if (data?.session) {
+        navigate('/dashboard');
+      } else {
+        setError('Success! Please check your email to verify your account.');
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      }
+    } catch (err: any) {
+      setError(err?.message || 'Registration failed.');
+    } finally {
       setIsLoading(false);
-      navigate('/login');
-    }, 1200);
+    }
   };
 
   return (

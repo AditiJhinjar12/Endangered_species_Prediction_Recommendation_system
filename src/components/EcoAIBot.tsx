@@ -15,7 +15,7 @@ export const EcoAIBot: React.FC = () => {
     {
       id: 'msg-init-1',
       sender: 'bot',
-      text: 'Hello! I am EcoBot AI, your conservation intelligence assistant. I can analyze telemetry variables and forecast species risk metrics for you. What would you like to explore today?',
+      text: 'Hello! I am EcoBot, your wildlife research assistant. I can fetch species profiles, explain ML predictions, or help you compare species indicators. What can I help you analyze today?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -23,28 +23,35 @@ export const EcoAIBot: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Listen to custom window event to toggle chatbot from Sidebar
+  useEffect(() => {
+    const handleToggle = () => setIsOpen(prev => !prev);
+    window.addEventListener('toggle-ecobot', handleToggle);
+    return () => window.removeEventListener('toggle-ecobot', handleToggle);
+  }, []);
+
   const quickPrompts = [
-    { label: '🐯 Predict Bengal Tiger', text: 'What is the ML population forecast for the Bengal Tiger?' },
-    { label: '🐆 Snow Leopard Policies', text: 'Show me AI conservation recommendations for the Snow Leopard.' },
-    { label: '🛰️ Check Kaziranga Threat', text: 'Analyze the current deforestation variables at Kaziranga Forest.' },
-    { label: '💡 How does the AI work?', text: 'Explain the machine learning models used to calculate threat indices.' },
+    { label: '🐯 Show Bengal Tiger data', text: 'Show me the research data summary for the Bengal Tiger.' },
+    { label: '📊 Explain population prediction', text: 'How does the ML model forecast population trends?' },
+    { label: '🔬 Compare Tiger and Rhino', text: 'Compare the Bengal Tiger and One-Horned Rhinoceros.' },
+    { label: '💡 Explain recommendation rules', text: 'Explain the rules used to generate conservation recommendations.' },
   ];
 
   const getAIResponse = (query: string): string => {
     const q = query.toLowerCase();
     if (q.includes('tiger') || q.includes('bengal')) {
-      return 'According to our ML time-series projections for the Bengal Tiger (Panthera tigris tigris) in the Sundarbans: Current population is 3,890. Without action, a baseline decline of 7.2% biennially is projected due to sea level rises. If anti-poaching patrol intensity is increased by 100%, our model forecasts a recovery to 4,450 (+14.3%) by 2036.';
+      return 'BENGAL TIGER (Panthera tigris tigris) SUMMARY:\n\n• Current Population: ~3,700 (Declining)\n• Major Threat: Habitat Loss (82% severity index) and Poaching (71% severity).\n• Status: Endangered\n• Interventions: Increase Habitat Protection (Priority: HIGH) and Anti-Poaching Patrols.\n\nYou can view the full profile under the "Species Explorer" tab.';
     }
-    if (q.includes('leopard') || q.includes('snow')) {
-      return 'For the Snow Leopard (Panthera uncia) in Himalayan altitudes: Primary threats are Glacier retreat (22% canopy/snow line shrinkage) and livestock conflict. Our AI recommends: 1. Launching Autonomous Drone Patrols (AI-P12) to detect poaching vectors; 2. Establishing community Eco-Insurance buffers to cover livestock losses.';
+    if (q.includes('compare') || q.includes('rhino') || q.includes('comparison')) {
+      return 'SPECIES COMPARISON SUMMARY:\n\n• Bengal Tiger: Pop ~3,700 | Endangered | Declining Trend | High Poaching threat (71%).\n• One-Horned Rhino: Pop ~4,014 | Vulnerable | Stable Trend | Extreme Poaching threat (85%).\n\nFor a full side-by-side indicator matrix, navigate to the "Species Comparison" tab.';
     }
-    if (q.includes('kaziranga') || q.includes('deforestation') || q.includes('threat')) {
-      return 'GIS Satellite feeds for Kaziranga Forest show canopy density down by 4.2% in Sector Alpha. The time-series model correlates this with high road encroachment risk. Recommended intervention: Deploy wildlife migration corridor bridges and freeze agricultural development within 5km.';
+    if (q.includes('prediction') || q.includes('forecast') || q.includes('model') || q.includes('ml')) {
+      return 'LSTM FORECAST MODEL EXPLANATION:\n\nEcoPredictAI uses recurrent neural networks trained on historical census logs (2016-2026) and local habitat variables. The model confidence is 91% for Tiger and 95% for Rhino datasets. Predictions project a 10-year curve (2028-2035) to help identify declining trends early. View these curves under the "Population Prediction" tab.';
     }
-    if (q.includes('how') || q.includes('model') || q.includes('work') || q.includes('ml')) {
-      return 'EcoPredictAI operates using Recurrent Neural Networks (RNN) and LSTM architecture trained on environmental covariates. Features include local temperature anomalies, forest fragmentation index, and poaching frequency registers to output 10-year species sustainability curves.';
+    if (q.includes('recommendation') || q.includes('rules') || q.includes('policy')) {
+      return 'CONSERVATION RECOMMENDATION POLICY:\n\nOur recommendation engine uses data-driven trigger rules:\n1. If Habitat Loss severity > 60% and trend is declining → Trigger HIGH priority Habitat Restoration recommendation.\n2. If Poaching severity > 70% → Trigger HIGH priority Anti-Poaching patrols.\n\nRead the generated rules under the "Recommendations" tab.';
     }
-    return "That's an interesting question. I've logged this query into the conservation database. Based on environmental trends, I suggest checking out our AI Recommendations panel or adjusting the simulation sliders to view live prediction impacts.";
+    return "I can retrieve details for Bengal Tiger, Snow Leopard, Asian Elephant, and One-Horned Rhino, or explain how we process forecasts and comparison matrixes. Type 'tiger' or 'compare' to begin!";
   };
 
   const handleSendMessage = (textToSend: string) => {
@@ -61,7 +68,6 @@ export const EcoAIBot: React.FC = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI thinking delay
     setTimeout(() => {
       const responseText = getAIResponse(textToSend);
       const botMessage: Message = {
@@ -72,7 +78,7 @@ export const EcoAIBot: React.FC = () => {
       };
       setMessages((prev) => [...prev, botMessage]);
       setIsTyping(false);
-    }, 1000);
+    }, 850);
   };
 
   const scrollToBottom = () => {
@@ -98,13 +104,13 @@ export const EcoAIBot: React.FC = () => {
             <div className="bg-gradient-to-r from-emerald-950/70 to-emerald-900/60 p-4 border-b border-emerald-500/25 flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
                 <div className="p-2 bg-emerald-500/20 rounded-lg border border-emerald-500/30 text-brand-green">
-                  <FaRobot className="h-4.5 w-4.5 animate-bounce" />
+                  <FaRobot className="h-4.5 w-4.5 animate-pulse" />
                 </div>
                 <div>
                   <h3 className="font-bold text-white text-sm">EcoBot AI</h3>
                   <span className="text-[10px] text-brand-green flex items-center gap-1 font-medium">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-green animate-ping" />
-                    Online Agent
+                    Research Assistant Active
                   </span>
                 </div>
               </div>
@@ -116,7 +122,7 @@ export const EcoAIBot: React.FC = () => {
               </button>
             </div>
 
-            {/* Chat Body */}
+            {/* Chat Messages */}
             <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs scrollbar-thin">
               {messages.map((msg) => (
                 <div
@@ -124,9 +130,9 @@ export const EcoAIBot: React.FC = () => {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm leading-relaxed ${
+                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm leading-relaxed whitespace-pre-line ${
                       msg.sender === 'user'
-                        ? 'bg-gradient-to-br from-emerald-600 to-green-500 text-white rounded-tr-none'
+                        ? 'bg-gradient-to-br from-emerald-650 to-green-600 text-white rounded-tr-none'
                         : 'bg-emerald-950/45 border border-emerald-900/40 text-emerald-50 rounded-tl-none'
                     }`}
                   >
@@ -142,15 +148,15 @@ export const EcoAIBot: React.FC = () => {
                 <div className="flex justify-start">
                   <div className="bg-emerald-950/45 border border-emerald-900/40 text-emerald-50 rounded-2xl rounded-tl-none px-3.5 py-3 shadow-sm flex items-center space-x-1.5">
                     <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 bg-emerald-405 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 bg-emerald-410 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Prompts Container */}
+            {/* Quick Actions Panel */}
             {messages.length === 1 && !isTyping && (
               <div className="px-4 pb-3 flex flex-wrap gap-1.5">
                 {quickPrompts.map((p, idx) => (
@@ -165,7 +171,7 @@ export const EcoAIBot: React.FC = () => {
               </div>
             )}
 
-            {/* Message Input */}
+            {/* Input Form */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -177,8 +183,8 @@ export const EcoAIBot: React.FC = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask about species, threats or policies..."
-                className="flex-1 bg-emerald-950/20 border border-emerald-900/30 rounded-xl px-3 py-2 text-xs text-white placeholder-emerald-100/30 focus:outline-none focus:border-emerald-500/40"
+                placeholder="Ask about species, predictions, or metrics..."
+                className="flex-1 bg-emerald-950/20 border border-emerald-900/30 rounded-xl px-3 py-2 text-xs text-white placeholder-emerald-100/30 focus:outline-none focus:border-brand-green/45"
               />
               <button
                 type="submit"
@@ -192,7 +198,7 @@ export const EcoAIBot: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Icon */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -231,3 +237,4 @@ export const EcoAIBot: React.FC = () => {
     </div>
   );
 };
+export default EcoAIBot;
